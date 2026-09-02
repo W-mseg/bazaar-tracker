@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Run #{{ run['run_id'] }} — Bazaar Tracker{% endblock %}
+{% block body %}
+  <a class="back" href="{{ url_for('index') }}">&larr; Toutes les runs</a>
+  <h1>Run #{{ run['run_id'] }} — {{ run['hero'] or 'Héros inconnu' }}</h1>
+  <div class="subtitle">
+    {{ run['started_at']|fmt_ts }} &rarr; {{ run['ended_at']|fmt_ts }}
+    ({{ (run['ended_at'] - run['started_at'])|fmt_duration if run['ended_at'] else '—' }})
+  </div>
+
+  <div class="summary">
+    <div class="card"><div class="value">{{ run['game_mode'] or '—' }}</div><div class="label">Mode</div></div>
+    <div class="card">
+      <div class="value">
+        {% if run['result'] == 'victory' %}<span class="badge victory">Victoire</span>
+        {% elif run['result'] == 'defeat' %}<span class="badge defeat">Défaite</span>
+        {% else %}<span class="badge unknown">En cours</span>{% endif %}
+      </div>
+      <div class="label">Résultat</div>
+    </div>
+    <div class="card"><div class="value">{{ '%+d'|format(run['rank_delta']) if run['rank_delta'] else '0' }}</div><div class="label">Rang</div></div>
+    <div class="card"><div class="value">{{ run['wins'] if run['wins'] is not none else '—' }}</div><div class="label">Wins (OCR)</div></div>
+    <div class="card"><div class="value">{{ run['gold'] if run['gold'] is not none else '—' }}</div><div class="label">Gold (OCR)</div></div>
+    <div class="card"><div class="value">{{ run['prestige'] if run['prestige'] is not none else '—' }}</div><div class="label">Prestige</div></div>
+    <div class="card"><div class="value">{{ run['level'] if run['level'] is not none else '—' }}</div><div class="label">Level</div></div>
+    <div class="card"><div class="value">{{ run['max_health'] if run['max_health'] is not none else '—' }}</div><div class="label">Vie max</div></div>
+  </div>
+
+  <h2>Items ({{ items|length }})</h2>
+  {% if items %}
+  <table>
+    <tr>
+      <th>Template</th>
+      <th>Socket</th>
+      <th>Achat</th>
+      <th>Vente</th>
+      <th>Prix vente</th>
+    </tr>
+    {% for it in items %}
+    <tr>
+      <td class="mono" title="{{ it['template_id'] }}">{{ it['template_id']|short_guid }}</td>
+      <td>{{ it['socket_target'] or '—' }}</td>
+      <td>{{ it['purchased_at']|fmt_ts }}</td>
+      <td>{{ it['sold_at']|fmt_ts if it['sold_at'] else '—' }}</td>
+      <td>{{ it['sell_price'] if it['sell_price'] is not none else '—' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucun item enregistré.</div>
+  {% endif %}
+
+  <h2>Combats ({{ combats|length }})</h2>
+  {% if combats %}
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Début</th>
+      <th>Durée simulée</th>
+      <th>Frames</th>
+    </tr>
+    {% for c in combats %}
+    <tr>
+      <td>{{ 'PVP' if c['combat_type'] == 'pvp' else 'PVE' }}</td>
+      <td>{{ c['started_at']|fmt_ts }}</td>
+      <td>{{ (c['duration_ms'] / 1000)|fmt_duration if c['duration_ms'] else '—' }}</td>
+      <td>{{ c['frames'] if c['frames'] is not none else '—' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucun combat enregistré.</div>
+  {% endif %}
+
+  <h2>Rerolls ({{ rerolls|length }})</h2>
+  {% if rerolls %}
+  <table>
+    <tr><th>Horodatage</th></tr>
+    {% for r in rerolls %}
+    <tr><td>{{ r['occurred_at']|fmt_ts }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucun reroll enregistré.</div>
+  {% endif %}
+
+  <h2>Compétences ({{ skills|length }})</h2>
+  {% if skills %}
+  <table>
+    <tr>
+      <th>Compétence</th>
+      <th>Socket</th>
+      <th>Horodatage</th>
+    </tr>
+    {% for s in skills %}
+    <tr>
+      <td class="mono">{{ s['skill_id'] }}</td>
+      <td>{{ s['socket'] or '—' }}</td>
+      <td>{{ s['selected_at']|fmt_ts }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucune compétence enregistrée.</div>
+  {% endif %}
+{% endblock %}

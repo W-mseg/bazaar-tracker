@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Bazaar Tracker{% endblock %}
+{% block body %}
+  <h1>Bazaar Tracker</h1>
+  <div class="subtitle">Base locale — {{ runs|length }} run(s) enregistrée(s)</div>
+
+  <div class="summary">
+    <div class="card"><div class="value">{{ summary.finished }}</div><div class="label">Runs terminées</div></div>
+    <div class="card"><div class="value">{{ summary.wins }}</div><div class="label">Victoires</div></div>
+    <div class="card"><div class="value">{{ summary.defeats }}</div><div class="label">Défaites</div></div>
+    <div class="card">
+      <div class="value">{{ summary.win_rate ~ '%' if summary.win_rate is not none else '—' }}</div>
+      <div class="label">Taux de victoire</div>
+    </div>
+    <div class="card"><div class="value">{{ summary.gold_from_sales }}</div><div class="label">Or (ventes cumulées)</div></div>
+    <div class="card"><div class="value">{{ summary.pending_sync }}</div><div class="label">En attente de sync</div></div>
+  </div>
+
+  <h2>Runs</h2>
+  {% if runs %}
+  <table>
+    <tr>
+      <th>Début</th>
+      <th>Joueur</th>
+      <th>Héros</th>
+      <th>Mode</th>
+      <th>Résultat</th>
+      <th>Rang</th>
+      <th>Wins (OCR)</th>
+      <th>Gold (OCR)</th>
+      <th>Sync</th>
+    </tr>
+    {% for run in runs %}
+    <tr>
+      <td><a href="{{ url_for('run_detail', run_id=run['run_id']) }}">{{ run['started_at']|fmt_ts }}</a></td>
+      <td>{{ run['player_username'] or '—' }}</td>
+      <td>{{ run['hero'] or '—' }}</td>
+      <td>{{ run['game_mode'] or '—' }}</td>
+      <td>
+        {% if run['result'] == 'victory' %}<span class="badge victory">Victoire</span>
+        {% elif run['result'] == 'defeat' %}<span class="badge defeat">Défaite</span>
+        {% else %}<span class="badge unknown">En cours</span>{% endif %}
+      </td>
+      <td>{{ '%+d'|format(run['rank_delta']) if run['rank_delta'] else '0' }}</td>
+      <td>{{ run['wins'] if run['wins'] is not none else '—' }}</td>
+      <td>{{ run['gold'] if run['gold'] is not none else '—' }}</td>
+      <td>
+        {% if run['synced_at'] %}<span class="badge synced">Synced</span>
+        {% elif run['ended_at'] %}<span class="badge pending">En attente</span>
+        {% else %}<span class="badge unknown">—</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucune run enregistrée pour l'instant. Lance une partie avec le tracker actif.</div>
+  {% endif %}
+{% endblock %}

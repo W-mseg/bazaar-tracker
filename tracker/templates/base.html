@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Bazaar Tracker{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="topnav">
+    <a href="{{ url_for('index') }}">Local</a>
+    <a href="{{ url_for('global_view') }}">Global</a>
+  </nav>
+  {% block body %}{% endblock %}
+</body>
+</html>

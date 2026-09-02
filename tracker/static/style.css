@@ -1,0 +1,106 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #14161c;
+  color: #e6e6ea;
+  margin: 0;
+  padding: 24px 32px 64px;
+}
+
+a { color: #7fb3ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1 { margin: 0 0 4px; font-size: 22px; }
+h2 { font-size: 16px; color: #b8bcc8; margin: 32px 0 10px; }
+
+.subtitle { color: #8a8f9c; margin-bottom: 24px; font-size: 13px; }
+
+.summary {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: #1c1f28;
+  border: 1px solid #2a2e3a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 110px;
+}
+
+.card .value { font-size: 20px; font-weight: 600; }
+.card .label { font-size: 11px; color: #8a8f9c; text-transform: uppercase; letter-spacing: 0.04em; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1c1f28;
+  border: 1px solid #2a2e3a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #262a35;
+}
+
+th {
+  color: #8a8f9c;
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: #191c24;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #20232d; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge.victory { background: #16351f; color: #6fd88b; }
+.badge.defeat { background: #3a1c1c; color: #ef8e8e; }
+.badge.unknown { background: #2a2e3a; color: #8a8f9c; }
+.badge.synced { background: #182a3a; color: #7fb3ff; }
+.badge.pending { background: #3a2f18; color: #e0b85f; }
+
+.mono { font-family: "Cascadia Code", Consolas, monospace; font-size: 12px; }
+
+.empty { color: #6b7080; font-style: italic; padding: 20px; }
+
+.back { display: inline-block; margin-bottom: 16px; font-size: 13px; }
+
+.topnav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+.topnav a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #b8bcc8;
+}
+.topnav a:hover { background: #1c1f28; text-decoration: none; }
+
+.notice {
+  background: #1c1f28;
+  border: 1px solid #2a2e3a;
+  border-radius: 8px;
+  padding: 16px;
+  color: #b8bcc8;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.notice.error { border-color: #4a2a2a; color: #ef8e8e; }

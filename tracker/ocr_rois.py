@@ -1,0 +1,22 @@
+# coords are (x, y, w, h) in pixels
+# Ported from the Bazaar Chronicle project (MIT licensed) -- this part of
+# their pipeline is independent of the broken log parsing and still works.
+ROIS = {
+    "1920x1080": {
+          "wins": [840, 176, 120, 104],
+          "max_health": [612, 828, 288, 43],
+          "prestige": [917, 828, 214, 46],
+          "level": [1161, 828, 204, 43],
+          "income": [1399, 828, 182, 44],
+          "gold": [1627, 828, 173, 43]
+        },
+
+    "2879x1799": {
+      "wins": [1263, 356, 167, 146],
+      "max_health": [943, 1332, 327, 61],
+      "prestige": [1414, 1332, 250, 64],
+      "level": [1774, 1332, 225, 64],
+      "income": [2139, 1332, 231, 68],
+      "gold": [2440, 1332, 207, 63]
+    },
+}

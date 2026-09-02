@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Global — Bazaar Tracker{% endblock %}
+{% block body %}
+  <h1>Global</h1>
+  <div class="subtitle">Toutes les runs synchronisées sur Supabase, tous joueurs confondus</div>
+
+  {% if not configured %}
+  <div class="notice">
+    Pas encore configuré. Ajoute <span class="mono">SUPABASE_URL</span> et
+    <span class="mono">SUPABASE_KEY</span> (ou <span class="mono">SUPABASE_SERVICE_KEY</span>)
+    dans le fichier <span class="mono">.env</span>, puis relance le tracker.
+  </div>
+  {% elif error %}
+  <div class="notice error">Impossible de contacter Supabase : {{ error }}</div>
+  {% else %}
+
+  <h2>Classement</h2>
+  {% if leaderboard %}
+  <table>
+    <tr>
+      <th>Joueur</th>
+      <th>Runs</th>
+      <th>Victoires</th>
+      <th>Défaites</th>
+      <th>Taux de victoire</th>
+    </tr>
+    {% for p in leaderboard %}
+    <tr>
+      <td>{{ p.username }}</td>
+      <td>{{ p.runs }}</td>
+      <td>{{ p.wins }}</td>
+      <td>{{ p.defeats }}</td>
+      <td>{{ ((100 * p.wins / p.runs)|round(1)) ~ '%' if p.runs else '—' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucune run synchronisée pour l'instant.</div>
+  {% endif %}
+
+  <h2>Runs ({{ runs|length }})</h2>
+  {% if runs %}
+  <table>
+    <tr>
+      <th>Début</th>
+      <th>Joueur</th>
+      <th>Héros</th>
+      <th>Mode</th>
+      <th>Résultat</th>
+      <th>Rang</th>
+      <th>Wins (OCR)</th>
+      <th>Gold (OCR)</th>
+    </tr>
+    {% for run in runs %}
+    <tr>
+      <td>{{ run.started_at|fmt_ts }}</td>
+      <td>{{ run.player_username or '—' }}</td>
+      <td>{{ run.hero or '—' }}</td>
+      <td>{{ run.game_mode or '—' }}</td>
+      <td>
+        {% if run.result == 'victory' %}<span class="badge victory">Victoire</span>
+        {% elif run.result == 'defeat' %}<span class="badge defeat">Défaite</span>
+        {% else %}<span class="badge unknown">En cours</span>{% endif %}
+      </td>
+      <td>{{ '%+d'|format(run.rank_delta) if run.rank_delta else '0' }}</td>
+      <td>{{ run.wins if run.wins is not none else '—' }}</td>
+      <td>{{ run.gold if run.gold is not none else '—' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="empty">Aucune run synchronisée pour l'instant.</div>
+  {% endif %}
+
+  {% endif %}
+{% endblock %}

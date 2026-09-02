@@ -1,0 +1,976 @@
+Mono path[0] = 'D:/ksp/steamapps/common/The Bazaar/TheBazaar_Data/Managed'
+Mono config path = 'D:/ksp/steamapps/common/The Bazaar/MonoBleedingEdge/etc'
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Initialize engine version: 6000.3.11f1 (3000ef702840)
+[Subsystems] Discovering subsystems at path D:/ksp/steamapps/common/The Bazaar/TheBazaar_Data/UnitySubsystems
+d3d12: failed to create D3D12 device (0x887e0003).
+GfxDevice: creating device client; kGfxThreadingModeClientWorkerJobs
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   NVIDIA
+    VRAM:     8067 MB
+    Driver:   32.0.15.7283
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.342 seconds
+- Finished resetting the current domain, in  0.003 seconds
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+<RI> Initializing input.
+
+Using Windows.Gaming.Input
+UnloadTime: 11.358700 ms
+[22:19:16.700] [AppLoader] Register Systems
+Multiple instances of TheBazaar.MainThreadDispatcher attempted to start. This is usually fine, but could cause unexpected behavior if unintended.
+[PlayerPreferences] Preferences initialized.
+DontDestroyOnLoad only works for root GameObjects or components on root GameObjects.
+[22:19:16.891] [AppLoader] === Application Info ===
+Version: 1.0.12222-prod-windows-x64-adc9ca50
+Platform: WindowsPlayer
+Unity Version: 6000.3.11f1
+Persistent Data Path: C:/Users/marco/AppData/LocalLow/Tempo Storm/The Bazaar
+Cache Paths:
+ - C:/Users/marco/AppData/LocalLow/Unity/Tempo Storm_The Bazaar
+[PlayerPreferences] Preference LastCacheClearVersion changed.
+[PlayerPreferences] Preferences saved.
+[22:19:16.924] [AppLoader] Clearing Unity cache: success | Version: 1.0.12222-prod-windows-x64-adc9ca50
+[22:19:16.925] [AppLoader] Adding Startup Tasks
+[22:19:16.955] [UIAppLoadingScreen] Task Succeeded: Ensure Internet, Duration: 16ms | Remaining tasks: 1
+[22:19:16.955] [Config] URLs configured for PRODUCTION environment
+[22:19:17.010] [UIAppLoadingScreen] Task Succeeded: Init Command Args, Duration: 55ms | Remaining tasks: 2
+[22:19:17.167] [SteamModule] Authenticating with Steam...
+[22:19:17.170] [HttpDataProvider] Configuring headers - X-Platform=Steam, X-ClientFlavor=Paid
+[22:19:17.171] [UIAppLoadingScreen] Task Succeeded: Input Manager, Duration: 231ms | Remaining tasks: 4
+[22:19:17.172] [UIAppLoadingScreen] Task Succeeded: Haptics Manager, Duration: 1ms | Remaining tasks: 4
+[22:19:17.172] [UIAppLoadingScreen] Task Succeeded: Unity Services, Duration: 216ms | Remaining tasks: 3
+[22:19:17.172] [UIAppLoadingScreen] Task Succeeded: Data Provider, Duration: 2ms | Remaining tasks: 2
+[22:19:17.940] [ServersHealthService] Downloaded maintenance: 2566 bytes
+[22:19:18.162] [UIAppLoadingScreen] Task Succeeded: Ensure Servers, Duration: 1152ms | Remaining tasks: 1
+[22:19:18.163] [AddressablesManager] Initializing...
+[22:19:18.286] [DataDownloader] DownloadAsync Downloading GameData from https://data.playthebazaar.com/static...
+[22:19:18.297] [AddressablesManager] Updating catalog
+[22:19:18.300] [AddressablesManager] Downloading dependencies
+[22:19:19.696] [SteamModule] Ticket response received. Result: k_EResultOK
+[22:19:19.699] [SteamModule] Authenticated with Steam. TicketAsString: 1400000067966f1a9132b38ca9958c06010010016ff5976a180000000100000005000000e54b05e2651c2e6221643b0202000000b80000003800000004000000a9958c0601001001f8ad18002eb8bdd57f00a8c00000000034a8926ab457ae6a010021c108000100bc4b3e000000000019f7ba2c2c6072171d4fdab50403bc6b4df76473c3ac2d33e090c29ca0a25f812758a71cdd6a2686242ff206a9fc91e0e0865df5735857606d45ba6f811b474646542864bbfc7082d9de37af417066e70e03482cb46c57b5aa17c526ec710440f5df5ddccf6791f637e01dcc1ccc44f3a4eb2f86a71bb6579ca9318696df707c, ID: 76561198070142377
+[22:19:19.701] [SteamDLCService] New DLC installed: Jules - Celebrity Chef Warrior Mom
+[22:19:19.705] [UIAppLoadingScreen] Task Succeeded: Steam Init, Duration: 2677ms | Remaining tasks: 2
+[22:19:19.705] [AuthServiceFactory] Initializing Steam Auth Service
+[22:19:19.705] [AppLoader] Auth Service initialized: SteamAuthService
+[22:19:19.739] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/auth/login/silent | POST
+[22:19:19.742] [UIAppLoadingScreen] Task Succeeded: Auth Service, Duration: 37ms | Remaining tasks: 2
+[22:19:19.752] [DataDownloader] Downloaded GameData: 3114991 bytes
+[22:19:20.611] [UIAppLoadingScreen] Task Succeeded: Static Data, Duration: 2401ms | Remaining tasks: 1
+[22:19:20.613] [AddressablesManager] Initialization complete
+[22:19:20.613] [UIAppLoadingScreen] Task Succeeded: Addressables, Duration: 2451ms | Remaining tasks: 0
+[22:19:20.614] [SoundManager] SoundManager Loading Banks...
+[22:19:21.140] [UIAppLoadingScreen] Task Succeeded: Audio, Duration: 527ms | Remaining tasks: 3
+[22:19:21.140] [UIAppLoadingScreen] Task Succeeded: Platform Keywords, Duration: 1ms | Remaining tasks: 2
+[22:19:21.344] [QualitySettings] Quality Settings: Initializing Quality Settings
+[22:19:21.345] [UIAppLoadingScreen] Task Succeeded: Quality, Duration: 213ms | Remaining tasks: 1
+[22:19:21.546] [HttpDataProvider] Received: auth/login/silent | 1802 ms
+[22:19:21.676] [DataDownloader] DownloadAsync Downloading de-DE from https://data.playthebazaar.com/static...
+[22:19:21.677] [DataDownloader] DownloadAsync Downloading pt-BR from https://data.playthebazaar.com/static...
+[22:19:21.678] [DataDownloader] DownloadAsync Downloading zh-CN from https://data.playthebazaar.com/static...
+[22:19:21.678] [DataDownloader] DownloadAsync Downloading ko-KR from https://data.playthebazaar.com/static...
+[22:19:22.880] [DataDownloader] Downloaded de-DE: 892928 bytes
+[22:19:22.887] [DataDownloader] Downloaded pt-BR: 847872 bytes
+[22:19:22.947] [DataDownloader] Downloaded zh-CN: 798720 bytes
+[22:19:22.952] [DataDownloader] Downloaded ko-KR: 987136 bytes
+[22:19:23.010] [DataDownloader] DownloadAsync Downloading fr-FR from https://data.playthebazaar.com/static...
+[22:19:23.011] [DataDownloader] DownloadAsync Downloading es-ES from https://data.playthebazaar.com/static...
+[22:19:23.077] [DataDownloader] DownloadAsync Downloading it-IT from https://data.playthebazaar.com/static...
+[22:19:23.077] [DataDownloader] DownloadAsync Downloading th-TH from https://data.playthebazaar.com/static...
+[22:19:24.082] [DataDownloader] Downloaded fr-FR: 880640 bytes
+[22:19:24.212] [DataDownloader] DownloadAsync Downloading tr-TR from https://data.playthebazaar.com/static...
+[22:19:24.216] [DataDownloader] Downloaded es-ES: 839680 bytes
+[22:19:24.284] [DataDownloader] Downloaded it-IT: 876544 bytes
+[22:19:24.614] [DataDownloader] Downloaded th-TH: 1486848 bytes
+[22:19:24.752] [DataDownloader] Downloaded tr-TR: 827392 bytes
+[22:19:24.816] [LocalizationService] Loaded from CDN for locale 'fr-FR'.
+[22:19:24.949] [UIAppLoadingScreen] Task Succeeded: Localization, Duration: 3814ms | Remaining tasks: 0
+[22:19:58.703] [UIAppLoadingScreen] Task Succeeded: Login Manager, Duration: 33732ms | Remaining tasks: 1
+[22:19:58.743] [LoginFlowStateMachine] Transitioning to Login State: TryAutoLogin
+[22:19:58.744] [TryAutoLoginState] [TryAutoLogin] Starting with auth type: SteamAuthService
+[22:19:58.744] [TryAutoLoginState] [TryAutoLogin] Success for user. Is Auth: True
+[22:19:58.745] [TryAutoLoginState] [TryAutoLogin] Login validated, proceeding to game
+[22:19:58.745] [LoginFlowStateMachine] Transitioning to Login State: PlayNowValidated
+[22:19:58.750] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/time | GET
+[22:19:59.022] [HttpDataProvider] Received: time | 271 ms
+[22:19:59.026] [QualitySettings] Quality Settings: Initializing Quality Settings
+[22:19:59.029] [AccessTokenProvider] Refreshing access token...
+[22:19:59.038] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/auth/refreshtokens | POST
+[22:19:59.717] [UIAppLoadingScreen] Task Succeeded: Tooltip Parent, Duration: 34768ms | Remaining tasks: 1
+[22:19:59.719] [UIAppLoadingScreen] Task Succeeded: Build Tooltips, Duration: 2ms | Remaining tasks: 1
+[22:19:59.847] [HttpDataProvider] Received: auth/refreshtokens | 808 ms
+[22:19:59.848] [AccessTokenProvider] Access Token acquired. Expires: [03/09/2026 20:19:33]  |  Refresh: [03/09/2026 20:16:33]  |  Current time: [02/09/2026 20:19:34]  |  Seconds until refresh: [86220s]  |  Seconds until expiration: [86400s]
+[22:19:59.853] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/Bootstrap/app | GET
+[22:19:59.866] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/PlayerProfiles/me/career | GET
+[22:20:00.055] [HttpDataProvider] Received: PlayerProfiles/me/career | 179 ms
+[22:20:00.234] [HttpDataProvider] Received: Bootstrap/app | 326 ms
+[22:20:00.249] [ProfileCache] Username: TheWestred - AccountId: 84e5a001-6f62-45b3-99c2-caed4bfec519- Tutorial Completed: True
+[22:20:00.250] [RunConfigurationCache] RunConfigurationCache: Changing EHero to Jules
+[22:20:00.251] [GameInstance] Initialized
+[22:20:00.251] [UIAppLoadingScreen] Task Succeeded: Game Initialize, Duration: 1548ms | Remaining tasks: 0
+[22:20:00.251] [SystemLoader] RunTasks complete in 43,32s. Succeeded: 19, Failed: 0, Skipped: 0
+[22:20:00.251] [SystemLoader] SystemLoader -> OnComplete
+[22:20:00.251] [SoundManager] SoundManager Loading PlayerPref Volume Settings...
+[22:20:00.289] [SoundManager] SoundManager GetBuses ...
+[22:20:00.289] [SoundManager] SoundManager CreateSnapshotInstance...
+[22:20:00.291] [SoundManager] SoundManager Initialized
+[22:20:00.292] [AppStart] AppStart -> Initializing
+The referenced script on this Behaviour (Game Object '<null>') is missing!
+[22:20:29.799] [TrailerComponent] Cinematics disabled
+Cannot Prepare a disabled VideoPlayer
+Cannot Prepare a disabled VideoPlayer
+[22:20:29.805] [VersionShow]  Version: 1.0.12222-prod-windows-x64-adc9ca50
+[22:20:30.907] [AnnouncementController] [AnnouncementController] Not displaying announcement: Current UTC time '2026-09-02T20:20:30.9060327+00:00' is after end '2026-06-21T08:59:00.0000000+02:00'.
+Material Sprites-Default-Tempo doesn't have _Stencil property
+[22:20:31.282] [VersionShow]  Version: 1.0.12222-prod-windows-x64-adc9ca50
+[22:20:35.758] [RunConfigurationCache] RunConfigurationCache: Changing EPlayMode to Ranked
+[22:20:57.431] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/CollectionItems | GET
+[22:20:57.580] [HttpDataProvider] Received: CollectionItems | 148 ms
+[22:21:05.707] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/Loadouts/hero/Jules/equip/4883cf0cdf1e6a943b333aa6a256ad28 | POST
+[22:21:05.967] [HttpDataProvider] Received: Loadouts/hero/Jules/equip/4883cf0cdf1e6a943b333aa6a256ad28 | 259 ms
+[22:21:11.631] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/Loadouts/hero/Jules/equip/425a2ba1fb9ad4b4ea6d0e0ef5447a0a | POST
+[22:21:11.884] [HttpDataProvider] Received: Loadouts/hero/Jules/equip/425a2ba1fb9ad4b4ea6d0e0ef5447a0a | 253 ms
+[22:21:16.087] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/Loadouts/hero/Jules/equip/adb0a7e6862058645a2459e1838a4b8a | POST
+[22:21:16.323] [HttpDataProvider] Received: Loadouts/hero/Jules/equip/adb0a7e6862058645a2459e1838a4b8a | 234 ms
+[22:21:28.907] [GameInstance] Ready button clicked
+[22:21:28.908] [GameInstance] Starting new run...
+[22:21:28.917] [StartRunAppState] Loading scenes for run...
+[22:21:29.700] [StartRunAppState] Checking client version...
+[22:21:30.156] [StartRunAppState] Starting server connection
+[22:21:30.162] [NetworkManager] [HttpGameClient] Initialized for account 84e5a0016f6245b399c2caed4bfec519 (user: TheWestred)
+[22:21:30.164] [NetworkManager] [HttpGameClient] Access token updated
+[22:21:30.374] [DataDownloader] DownloadAsync Downloading GameData from https://data.playthebazaar.com/static...
+[22:21:30.425] [DataDownloader] GameData is up to date (304 Not Modified)
+[22:21:32.227] [NetworkManager] [HttpGameClient] Command completed: type=InitializeRunCommand, requestId=1, status=200 OK, durationMs=1968, result=success, endpoint=/sessions
+[22:21:32.228] [NetMessageProcessor] Received: type=NetMessageAggregate, id=-bD
+[22:21:32.228] [NetMessageProcessor] Received: type=NetMessageRunInitialized, id=YwU
+[22:21:32.229] [GameMessageHandler] Handled: type=NetMessageRunInitialized, id=YwU, durationMs=0, result=success
+[22:21:32.229] [NetMessageProcessor] Received: type=NetMessageGameStateSync, id=ntI
+[22:21:32.241] [GameMessageHandler] Handled: type=NetMessageGameStateSync, id=ntI, durationMs=11, result=success
+[22:21:32.241] [NetMessageProcessor] Received: type=NetMessageGameSim, id=GXB
+[22:21:32.242] [NetMessageProcessor] Handled: type=NetMessageAggregate, id=-bD, durationMs=13, result=unpacked
+[22:21:32.244] [StartRunAppState] Server connected, waiting for run initialization data from server...
+[22:21:32.245] [StartRunAppState] Received run initialization data from server. Loading board...
+[22:21:35.116] [GameServiceManager] Initializing...
+[22:21:35.308] [BoardManager] BoardManager initialized.
+[22:21:36.165] [StartRunAppState] Finalizing run initialization...
+[22:21:36.195] [GameServiceManager] Initialization Complete
+[22:21:36.195] [StartRunAppState] Board initialized. Processing server messages...
+[22:21:36.196] [GameSimHandler] GameSim cards: id=GXB, dealt=3, spawned=1, disposed=0
+[22:21:36.215] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/PlayerProfiles/me | GET
+[22:21:36.225] [StartRunAppState] Run initialization complete. Waiting to finalize...
+[22:21:36.226] [AppState] State changed from [null] to [StartRunAppState]
+[22:21:36.387] [HttpDataProvider] Received: PlayerProfiles/me | 171 ms
+[22:21:36.389] [RunConfigurationCache] RunConfigurationCache: Changing EHero to Jules
+[22:21:36.467] [AppState] State changed from [StartRunAppState] to [ChoiceState]
+[22:21:36.508] [GameMessageHandler] Handled: type=NetMessageGameSim, id=GXB, durationMs=313, result=success
+[22:21:37.444] [StartRunAppState] Run initialization finalized.
+[22:22:22.598] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=2, status=200 OK, durationMs=660, result=success, endpoint=/commands
+[22:22:22.598] [NetMessageProcessor] Received: type=NetMessageGameSim, id=wbc
+[22:22:22.599] [GameSimHandler] GameSim cards: id=wbc, dealt=3, spawned=0, disposed=2
+[22:22:22.599] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:22:22.618] [BoardManager] Card Purchased: InstanceId: enc_4LMiHY_ - TemplateId85db60ee-3619-4e39-bfb2-2f4ac56f172b - Target:OpponentSocket_5 - SectionOpponent
+[22:22:22.632] [GameMessageHandler] Handled: type=NetMessageGameSim, id=wbc, durationMs=32, result=success
+[22:22:56.268] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=3, status=200 OK, durationMs=59, result=success, endpoint=/commands
+[22:22:56.268] [NetMessageProcessor] Received: type=NetMessageGameSim, id=35f
+[22:22:56.277] [BoardManager] Card Purchased: InstanceId: itm_9XhJBBZ - TemplateId0d227497-f57f-44ef-98a8-15791e710fb6 - Target:PlayerSocket_3 - SectionPlayer
+[22:22:56.280] [GameMessageHandler] Handled: type=NetMessageGameSim, id=35f, durationMs=10, result=success
+[22:22:57.171] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=4, status=200 OK, durationMs=198, result=success, endpoint=/commands
+[22:22:57.172] [NetMessageProcessor] Received: type=NetMessageGameSim, id=Nms
+[22:22:57.172] [GameSimHandler] GameSim cards: id=Nms, dealt=3, spawned=0, disposed=2
+[22:22:57.183] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Nms, durationMs=11, result=success
+[22:23:01.009] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=5, status=200 OK, durationMs=44, result=success, endpoint=/commands
+[22:23:01.009] [NetMessageProcessor] Received: type=NetMessageGameSim, id=tQk
+[22:23:01.009] [BoardManager] Card Purchased: InstanceId: itm_rtVU837 - TemplateId7d83c2f2-1971-4ec8-b730-9d12aec93d76 - Target:PlayerSocket_6 - SectionPlayer
+[22:23:01.011] [GameMessageHandler] Handled: type=NetMessageGameSim, id=tQk, durationMs=2, result=success
+[22:23:02.719] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=6, status=200 OK, durationMs=61, result=success, endpoint=/commands
+[22:23:02.719] [NetMessageProcessor] Received: type=NetMessageGameSim, id=sXK
+[22:23:02.719] [BoardManager] Card Purchased: InstanceId: itm_spsz_7P - TemplateIdc0455f22-2fb9-4ce6-a65f-e874e3d86ff0 - Target:PlayerSocket_5 - SectionPlayer
+[22:23:02.721] [GameMessageHandler] Handled: type=NetMessageGameSim, id=sXK, durationMs=2, result=success
+[22:23:03.910] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=7, status=200 OK, durationMs=164, result=success, endpoint=/commands
+[22:23:03.910] [NetMessageProcessor] Received: type=NetMessageGameSim, id=X9g
+[22:23:03.910] [GameSimHandler] GameSim cards: id=X9g, dealt=3, spawned=0, disposed=2
+[22:23:03.910] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:23:03.920] [GameMessageHandler] Handled: type=NetMessageGameSim, id=X9g, durationMs=9, result=success
+[22:23:42.740] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=8, status=200 OK, durationMs=82, result=success, endpoint=/commands
+[22:23:42.740] [NetMessageProcessor] Received: type=NetMessageGameSim, id=yvI
+[22:23:42.740] [GameSimHandler] GameSim cards: id=yvI, dealt=3, spawned=3, disposed=3
+[22:23:42.740] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:23:42.754] [BoardManager] Card Purchased: InstanceId: enc_0wOwTFT - TemplateIde6e09e6a-ebe0-46f8-bfbb-716b74f78bc6 - Target:OpponentSocket_5 - SectionOpponent
+[22:23:42.754] [GameMessageHandler] Handled: type=NetMessageGameSim, id=yvI, durationMs=13, result=success
+[22:23:45.494] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=9, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:23:45.494] [NetMessageProcessor] Received: type=NetMessageGameSim, id=aTE
+[22:23:45.494] [GameSimHandler] GameSim cards: id=aTE, dealt=0, spawned=0, disposed=1
+[22:23:45.496] [BoardManager] Sold Card itm_hBM35y1 for 0 gold.
+[22:23:45.496] [GameMessageHandler] Handled: type=NetMessageGameSim, id=aTE, durationMs=2, result=success
+[22:23:45.946] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=10, status=200 OK, durationMs=62, result=success, endpoint=/commands
+[22:23:45.946] [NetMessageProcessor] Received: type=NetMessageGameSim, id=AAX
+[22:23:45.947] [GameSimHandler] GameSim cards: id=AAX, dealt=0, spawned=0, disposed=1
+[22:23:45.947] [BoardManager] Sold Card itm_SITScpx for 0 gold.
+[22:23:45.947] [GameMessageHandler] Handled: type=NetMessageGameSim, id=AAX, durationMs=0, result=success
+[22:23:46.532] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=11, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[22:23:46.532] [NetMessageProcessor] Received: type=NetMessageGameSim, id=z5P
+[22:23:46.533] [GameSimHandler] GameSim cards: id=z5P, dealt=0, spawned=0, disposed=1
+[22:23:46.533] [BoardManager] Sold Card itm_AWyYzNo for 0 gold.
+[22:23:46.533] [GameMessageHandler] Handled: type=NetMessageGameSim, id=z5P, durationMs=0, result=success
+[22:23:48.877] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=12, status=200 OK, durationMs=132, result=success, endpoint=/commands
+[22:23:48.878] [GameSimHandler] GameSim cards: id=crl, dealt=0, spawned=6, disposed=2
+[22:23:48.992] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:23:48.993] [BoardManager] Card Purchased: InstanceId: com_1DNMuEY - TemplateIdbd0711a6-d9d9-4a47-8a18-8f991057f7dd - Target:OpponentSocket_5 - SectionOpponent
+[22:23:48.999] [GameMessageHandler] Handled: type=NetMessageGameSim, id=crl, durationMs=122, result=success
+[22:23:58.719] [CombatSimHandler] Combat prepared: frames=231, effectsMs=4
+[22:24:10.276] [CombatSimHandler] Combat simulation completed: durationMs=11562
+[22:24:16.370] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=J0L, durationMs=27379, result=success
+[22:24:16.397] [AppState] State changed from [CombatState] to [ReplayState]
+[22:24:17.482] [GameSimHandler] GameSim cards: id=n0K, dealt=1, spawned=0, disposed=6
+[22:24:17.484] [AppState] State changed from [ReplayState] to [LootState]
+[22:24:17.485] [GameMessageHandler] Handled: type=NetMessageGameSim, id=n0K, durationMs=3, result=success
+[22:24:19.172] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=13, status=200 OK, durationMs=147, result=success, endpoint=/commands
+[22:24:19.172] [GameSimHandler] GameSim cards: id=DVO, dealt=3, spawned=0, disposed=1
+[22:24:19.172] [AppState] State changed from [LootState] to [ChoiceState]
+[22:24:19.178] [BoardManager] Card Purchased: InstanceId: itm_BRyF7Ef - TemplateId4826832f-f3a5-4c40-b8fa-737f002074fa - Target:PlayerStorageSocket_0 - SectionStorage
+[22:24:19.182] [GameMessageHandler] Handled: type=NetMessageGameSim, id=DVO, durationMs=9, result=success
+[22:24:24.531] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=14, status=200 OK, durationMs=78, result=success, endpoint=/commands
+[22:24:24.531] [GameSimHandler] GameSim cards: id=KCE, dealt=0, spawned=0, disposed=1
+[22:24:24.531] [BoardManager] Sold Card itm_BRyF7Ef for 2 gold.
+[22:24:24.532] [GameMessageHandler] Handled: type=NetMessageGameSim, id=KCE, durationMs=1, result=success
+[22:24:28.228] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=15, status=200 OK, durationMs=98, result=success, endpoint=/commands
+[22:24:28.228] [GameSimHandler] GameSim cards: id=ew5, dealt=3, spawned=0, disposed=2
+[22:24:28.228] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:24:28.243] [BoardManager] Card Purchased: InstanceId: enc_DxRbnyb - TemplateId5b7c5fc4-c942-44fe-9ca8-726dc36a2ad6 - Target:OpponentSocket_5 - SectionOpponent
+[22:24:28.245] [GameMessageHandler] Handled: type=NetMessageGameSim, id=ew5, durationMs=16, result=success
+[22:24:32.277] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=16, status=200 OK, durationMs=115, result=success, endpoint=/commands
+[22:24:32.277] [GameSimHandler] GameSim cards: id=t4q, dealt=3, spawned=0, disposed=3
+[22:24:32.290] [GameMessageHandler] Handled: type=NetMessageGameSim, id=t4q, durationMs=12, result=success
+[22:24:35.915] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=17, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:24:35.915] [BoardManager] Card Purchased: InstanceId: itm_zstEou9 - TemplateIde6d331a7-c0e3-4619-9eee-c7c5023969bb - Target:PlayerStorageSocket_0 - SectionStorage
+[22:24:35.917] [GameMessageHandler] Handled: type=NetMessageGameSim, id=gCo, durationMs=2, result=success
+[22:24:37.339] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=18, status=200 OK, durationMs=163, result=success, endpoint=/commands
+[22:24:37.339] [GameSimHandler] GameSim cards: id=MJq, dealt=2, spawned=0, disposed=3
+[22:24:37.339] [AppState] State changed from [EncounterState] to [LevelUpState]
+[22:24:37.356] [GameMessageHandler] Handled: type=NetMessageGameSim, id=MJq, durationMs=17, result=success
+[22:24:38.948] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=19, status=200 OK, durationMs=132, result=success, endpoint=/commands
+[22:24:38.948] [GameSimHandler] GameSim cards: id=Xdc, dealt=3, spawned=0, disposed=2
+[22:24:38.957] [BoardManager] Card Purchased: InstanceId: ste_kIlXZZF - TemplateIde286d583-65b1-4fc3-b76e-c182c5c34604 - Target:OpponentSocket_5 - SectionOpponent
+[22:24:38.958] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Xdc, durationMs=9, result=success
+[22:24:46.855] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=20, status=200 OK, durationMs=243, result=success, endpoint=/commands
+[22:24:46.855] [GameSimHandler] GameSim cards: id=BbE, dealt=3, spawned=0, disposed=2
+[22:24:46.855] [AppState] State changed from [LevelUpState] to [ChoiceState]
+[22:24:46.861] [BoardManager] Card Purchased: InstanceId: itm_H9goJkx - TemplateIda16f1388-d900-4871-8baf-873e38190f9a - Target:PlayerSocket_7 - SectionPlayer
+[22:24:46.862] [GameMessageHandler] Handled: type=NetMessageGameSim, id=BbE, durationMs=6, result=success
+[22:24:46.862] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:25:13.717] [CardOperationUtility] Failed to move card itm_zstEou9 to player's inventory
+[22:25:15.937] [CardOperationUtility] Failed to move card itm_H9goJkx to player's inventory
+[22:25:38.570] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=31, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:25:38.570] [GameSimHandler] GameSim cards: id=1XP, dealt=3, spawned=0, disposed=2
+[22:25:38.570] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:25:38.574] [BoardManager] Card Purchased: InstanceId: enc_wtOD_x8 - TemplateId1e511488-af8e-4852-a46a-0f27a2b07aac - Target:OpponentSocket_5 - SectionOpponent
+[22:25:38.575] [GameMessageHandler] Handled: type=NetMessageGameSim, id=1XP, durationMs=5, result=success
+[22:25:42.368] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=32, status=200 OK, durationMs=150, result=success, endpoint=/commands
+[22:25:42.368] [GameSimHandler] GameSim cards: id=1VR, dealt=3, spawned=0, disposed=3
+[22:25:42.379] [BoardManager] Card Purchased: InstanceId: ste_4CSBWtX - TemplateIde73e7956-1875-4f40-b5f2-d3c4ed975751 - Target:OpponentSocket_5 - SectionOpponent
+[22:25:42.379] [GameMessageHandler] Handled: type=NetMessageGameSim, id=1VR, durationMs=10, result=success
+[22:25:45.248] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=33, status=200 OK, durationMs=333, result=success, endpoint=/commands
+[22:25:45.248] [BoardManager] Card Purchased: InstanceId: itm_CHtTHrZ - TemplateId3174b74a-9e67-4db7-ba98-0d4935b2586d - Target:PlayerStorageSocket_0 - SectionStorage
+[22:25:45.252] [GameMessageHandler] Handled: type=NetMessageGameSim, id=c9i, durationMs=5, result=success
+[22:25:46.487] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=34, status=200 OK, durationMs=47, result=success, endpoint=/commands
+[22:25:46.487] [BoardManager] Card Purchased: InstanceId: itm_GkIsxxC - TemplateIddc3bf5cb-45fa-46c7-9a0e-3f3bfb01697d - Target:PlayerStorageSocket_1 - SectionStorage
+[22:25:46.489] [GameMessageHandler] Handled: type=NetMessageGameSim, id=jzg, durationMs=2, result=success
+[22:25:47.695] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=35, status=200 OK, durationMs=81, result=success, endpoint=/commands
+[22:25:47.695] [GameSimHandler] GameSim cards: id=0Pv, dealt=1, spawned=0, disposed=1
+[22:25:47.695] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:25:47.697] [BoardManager] Card Purchased: InstanceId: itm_JR86i2s - TemplateId7607b1b9-4982-422d-b84a-edd9334c92c3 - Target:PlayerStorageSocket_2 - SectionStorage
+[22:25:47.699] [GameMessageHandler] Handled: type=NetMessageGameSim, id=0Pv, durationMs=4, result=success
+[22:25:50.923] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=36, status=200 OK, durationMs=141, result=success, endpoint=/commands
+[22:25:50.925] [BoardManager] Sold Card itm_JR86i2s for 1 gold.
+[22:25:54.326] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=37, status=200 OK, durationMs=45, result=success, endpoint=/commands
+[22:25:54.326] [BoardManager] Sold Card itm_GkIsxxC for 1 gold.
+[22:25:56.468] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=38, status=200 OK, durationMs=43, result=success, endpoint=/commands
+[22:25:56.468] [BoardManager] Sold Card itm_CHtTHrZ for 3 gold.
+[22:25:59.014] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=39, status=200 OK, durationMs=657, result=success, endpoint=/commands
+[22:25:59.014] [GameSimHandler] GameSim cards: id=5ah, dealt=0, spawned=10, disposed=0
+[22:25:59.075] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:25:59.100] [BoardManager] Card Purchased: InstanceId: pvp_8fn_Wgw - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:25:59.105] [GameMessageHandler] Handled: type=NetMessageGameSim, id=5ah, durationMs=90, result=success
+[22:26:10.067] [CombatSimHandler] Combat prepared: frames=341, effectsMs=0
+[22:26:27.126] [CombatSimHandler] Combat simulation completed: durationMs=17059
+[22:26:33.212] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=k1B, durationMs=34137, result=success
+[22:26:35.032] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:26:37.105] [GameSimHandler] GameSim cards: id=ZX4, dealt=3, spawned=0, disposed=20
+[22:26:37.107] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:26:37.110] [GameMessageHandler] Handled: type=NetMessageGameSim, id=ZX4, durationMs=4, result=success
+[22:27:35.423] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=40, status=200 OK, durationMs=107, result=success, endpoint=/commands
+[22:27:35.423] [GameSimHandler] GameSim cards: id=W6u, dealt=3, spawned=0, disposed=2
+[22:27:35.423] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:27:35.432] [BoardManager] Card Purchased: InstanceId: enc_9guTEgQ - TemplateIdc3d9c329-0db6-478e-ad0f-ef2ae78834ce - Target:OpponentSocket_5 - SectionOpponent
+[22:27:35.433] [GameMessageHandler] Handled: type=NetMessageGameSim, id=W6u, durationMs=10, result=success
+[22:27:38.754] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=41, status=200 OK, durationMs=115, result=success, endpoint=/commands
+[22:27:38.763] [BoardManager] Card Purchased: InstanceId: itm_H9goJkx - TemplateIda16f1388-d900-4871-8baf-873e38190f9a - Target:PlayerSocket_7 - SectionPlayer
+[22:27:38.763] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Swu, durationMs=8, result=success
+[22:27:44.521] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=42, status=200 OK, durationMs=115, result=success, endpoint=/commands
+[22:27:44.532] [GameMessageHandler] Handled: type=NetMessageGameSim, id=xBB, durationMs=10, result=success
+[22:27:47.199] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=43, status=200 OK, durationMs=47, result=success, endpoint=/commands
+[22:27:47.204] [BoardManager] Card Purchased: InstanceId: itm_9XhJBBZ - TemplateId0d227497-f57f-44ef-98a8-15791e710fb6 - Target:PlayerSocket_3 - SectionPlayer
+[22:27:47.204] [GameMessageHandler] Handled: type=NetMessageGameSim, id=MBw, durationMs=4, result=success
+[22:27:50.787] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=44, status=200 OK, durationMs=147, result=success, endpoint=/commands
+[22:27:50.787] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:27:50.792] [GameMessageHandler] Handled: type=NetMessageGameSim, id=QAo, durationMs=4, result=success
+[22:27:56.638] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=45, status=200 OK, durationMs=98, result=success, endpoint=/commands
+[22:27:56.638] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:27:56.640] [BoardManager] Card Purchased: InstanceId: enc_SfcQafs - TemplateIdc5326dd7-3e82-45c5-9a6c-81965a78bf89 - Target:OpponentSocket_5 - SectionOpponent
+[22:27:56.642] [GameMessageHandler] Handled: type=NetMessageGameSim, id=9ny, durationMs=4, result=success
+[22:27:58.901] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=46, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:27:58.901] [BoardManager] Card Purchased: InstanceId: ste_wv9Bx6T - TemplateId76256f50-8f01-47d7-bd9a-107be2ff2284 - Target:OpponentSocket_5 - SectionOpponent
+[22:27:58.902] [GameMessageHandler] Handled: type=NetMessageGameSim, id=6CB, durationMs=0, result=success
+[22:28:00.196] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=47, status=200 OK, durationMs=48, result=success, endpoint=/commands
+[22:28:00.196] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:28:00.199] [BoardManager] Card Purchased: InstanceId: itm_JOJoDK8 - TemplateId437852e0-10cc-4334-95e6-2966190baa1c - Target:PlayerStorageSocket_0 - SectionStorage
+[22:28:00.201] [GameMessageHandler] Handled: type=NetMessageGameSim, id=db6, durationMs=5, result=success
+[22:28:04.220] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=48, status=200 OK, durationMs=148, result=success, endpoint=/commands
+[22:28:04.220] [GameSimHandler] GameSim cards: id=Nq6, dealt=0, spawned=7, disposed=2
+[22:28:04.337] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:28:04.337] [BoardManager] Card Purchased: InstanceId: com_2ObsDjv - TemplateId1eabe08b-2949-407d-b22d-c6e579e0cd14 - Target:OpponentSocket_5 - SectionOpponent
+[22:28:04.339] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Nq6, durationMs=117, result=success
+[22:28:08.430] [CombatSimHandler] Combat prepared: frames=241, effectsMs=0
+[22:28:20.483] [CombatSimHandler] Combat simulation completed: durationMs=12052
+[22:28:26.569] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=EzM, durationMs=22232, result=success
+[22:28:26.596] [AppState] State changed from [CombatState] to [ReplayState]
+[22:28:31.626] [AppState] State changed from [ReplayState] to [LootState]
+[22:28:31.626] [GameMessageHandler] Handled: type=NetMessageGameSim, id=fZ_, durationMs=1, result=success
+[22:28:34.015] [AppState] Selected skill skl_pyifQAZ to socket SkillSocket_0
+[22:28:34.180] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=49, status=200 OK, durationMs=162, result=success, endpoint=/commands
+[22:28:34.180] [AppState] State changed from [LootState] to [ChoiceState]
+[22:28:34.188] [GameMessageHandler] Handled: type=NetMessageGameSim, id=ESl, durationMs=7, result=success
+[22:28:49.011] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=50, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:28:49.011] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:28:49.016] [BoardManager] Card Purchased: InstanceId: enc_l9Sj6p6 - TemplateId0623cedd-f24b-4117-a6b8-5fc41064a00d - Target:OpponentSocket_5 - SectionOpponent
+[22:28:49.017] [GameMessageHandler] Handled: type=NetMessageGameSim, id=mNK, durationMs=5, result=success
+[22:28:52.465] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=51, status=200 OK, durationMs=449, result=success, endpoint=/commands
+[22:28:52.465] [AppState] State changed from [EncounterState] to [LevelUpState]
+[22:28:52.468] [BoardManager] Card Purchased: InstanceId: ste_62t9ORc - TemplateIde616813c-787f-44a4-9ce2-3afec30438e5 - Target:OpponentSocket_5 - SectionOpponent
+[22:28:52.468] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Vi4, durationMs=3, result=success
+[22:28:54.343] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=52, status=200 OK, durationMs=132, result=success, endpoint=/commands
+[22:28:54.343] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:28:54.346] [BoardManager] Card Purchased: InstanceId: enc_hOF4kX0 - TemplateId7a4f9be7-9132-45a2-9885-6f2ce40a59be - Target:OpponentSocket_5 - SectionOpponent
+[22:28:54.348] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Hu0, durationMs=5, result=success
+[22:28:54.348] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:28:55.993] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=53, status=200 OK, durationMs=318, result=success, endpoint=/commands
+[22:28:55.998] [BoardManager] Card Purchased: InstanceId: ste_NQ4k2Fb - TemplateIdb8252f75-a642-4db9-9c8a-2870bf77ae47 - Target:OpponentSocket_5 - SectionOpponent
+[22:28:55.998] [GameMessageHandler] Handled: type=NetMessageGameSim, id=FmG, durationMs=5, result=success
+[22:28:58.592] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=54, status=200 OK, durationMs=343, result=success, endpoint=/commands
+[22:28:58.592] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:28:58.596] [BoardManager] Card Purchased: InstanceId: itm_lB0hlQp - TemplateId6260416a-6433-456a-9c5c-14a18d82f940 - Target:PlayerStorageSocket_2 - SectionStorage
+[22:28:58.598] [GameMessageHandler] Handled: type=NetMessageGameSim, id=ugD, durationMs=5, result=success
+[22:29:03.345] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=55, status=200 OK, durationMs=215, result=success, endpoint=/commands
+[22:29:03.345] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:29:03.345] [BoardManager] Card Purchased: InstanceId: enc_S-UZKLJ - TemplateIdfacaa0bc-ddb9-48dc-8be7-f44b8a07df00 - Target:OpponentSocket_5 - SectionOpponent
+[22:29:03.347] [GameMessageHandler] Handled: type=NetMessageGameSim, id=aGG, durationMs=1, result=success
+[22:29:05.844] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=56, status=200 OK, durationMs=56, result=success, endpoint=/commands
+[22:29:05.844] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:29:05.845] [BoardManager] Card Purchased: InstanceId: itm_iNp_3vR - TemplateId13081c31-f8b4-400d-bedc-8f311b08153b - Target:PlayerStorageSocket_3 - SectionStorage
+[22:29:05.847] [GameMessageHandler] Handled: type=NetMessageGameSim, id=H8J, durationMs=2, result=success
+[22:29:23.459] [CardOperationUtility] Failed to move card itm_9XhJBBZ to player's inventory
+[22:29:33.313] [NetworkManager] [HttpGameClient] Command completed: type=MoveItemCommand, requestId=70, status=200 OK, durationMs=73, result=success, endpoint=/commands
+[22:31:48.216] [CardOperationUtility] Failed to move card itm_9XhJBBZ to player's inventory
+[22:32:02.899] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=82, status=200 OK, durationMs=300, result=success, endpoint=/commands
+[22:32:02.899] [GameSimHandler] GameSim cards: id=6CX, dealt=0, spawned=7, disposed=0
+[22:32:03.010] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:32:03.024] [BoardManager] Card Purchased: InstanceId: pvp_NLjEKyg - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:32:03.026] [GameMessageHandler] Handled: type=NetMessageGameSim, id=6CX, durationMs=126, result=success
+[22:32:14.645] [CombatSimHandler] Combat prepared: frames=251, effectsMs=0
+[22:32:27.212] [CombatSimHandler] Combat simulation completed: durationMs=12567
+[22:32:33.305] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=h4l, durationMs=30294, result=success
+[22:32:35.107] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:32:43.196] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:32:43.202] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Ein, durationMs=7, result=success
+[22:34:29.238] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=83, status=200 OK, durationMs=181, result=success, endpoint=/commands
+[22:34:29.238] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:34:29.238] [BoardManager] Card Purchased: InstanceId: enc_lfxuvfW - TemplateId8b4d74f6-6491-40d6-87da-023672144e03 - Target:OpponentSocket_5 - SectionOpponent
+[22:34:29.240] [GameMessageHandler] Handled: type=NetMessageGameSim, id=a1e, durationMs=1, result=success
+[22:34:31.030] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=84, status=200 OK, durationMs=181, result=success, endpoint=/commands
+[22:34:31.030] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:34:31.033] [BoardManager] Card Purchased: InstanceId: itm_XEk9r0I - TemplateId6260416a-6433-456a-9c5c-14a18d82f940 - Target:PlayerStorageSocket_3 - SectionStorage
+[22:34:31.036] [GameMessageHandler] Handled: type=NetMessageGameSim, id=jmB, durationMs=5, result=success
+[22:35:58.446] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=85, status=200 OK, durationMs=64, result=success, endpoint=/commands
+[22:35:58.446] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:35:58.453] [BoardManager] Card Purchased: InstanceId: enc_kFvBps1 - TemplateIdcbe0d294-09db-47ea-a7e8-8127605c1173 - Target:OpponentSocket_5 - SectionOpponent
+[22:35:58.453] [GameMessageHandler] Handled: type=NetMessageGameSim, id=waf, durationMs=6, result=success
+[22:36:03.710] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=86, status=200 OK, durationMs=74, result=success, endpoint=/commands
+[22:36:03.710] [BoardManager] Sold Card itm_lB0hlQp for 1 gold.
+[22:36:04.279] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=87, status=200 OK, durationMs=73, result=success, endpoint=/commands
+[22:36:04.279] [BoardManager] Sold Card itm_Q0qSzzx for 1 gold.
+[22:36:04.748] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=88, status=200 OK, durationMs=73, result=success, endpoint=/commands
+[22:36:04.748] [BoardManager] Sold Card itm_8pxqDDz for 1 gold.
+[22:36:05.201] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=89, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:36:05.201] [BoardManager] Sold Card itm_yogn7sB for 1 gold.
+[22:36:05.619] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=90, status=200 OK, durationMs=54, result=success, endpoint=/commands
+[22:36:05.619] [BoardManager] Sold Card itm_7xr0UO_ for 1 gold.
+[22:36:06.137] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=91, status=200 OK, durationMs=55, result=success, endpoint=/commands
+[22:36:06.137] [BoardManager] Sold Card itm_JOJoDK8 for 2 gold.
+[22:36:10.163] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=93, status=200 OK, durationMs=283, result=success, endpoint=/commands
+[22:36:10.163] [GameSimHandler] GameSim cards: id=jBx, dealt=0, spawned=7, disposed=2
+[22:36:10.277] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:36:10.277] [BoardManager] Card Purchased: InstanceId: com_-TBDW0z - TemplateId04b60df4-91d9-4065-94e0-f9f462a3b104 - Target:OpponentSocket_5 - SectionOpponent
+[22:36:10.279] [GameMessageHandler] Handled: type=NetMessageGameSim, id=jBx, durationMs=115, result=success
+[22:36:13.937] [CombatSimHandler] Combat prepared: frames=211, effectsMs=0
+[22:36:24.494] [CombatSimHandler] Combat simulation completed: durationMs=10556
+[22:36:30.586] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=WUt, durationMs=20308, result=success
+[22:36:30.611] [AppState] State changed from [CombatState] to [ReplayState]
+[22:36:41.090] [AppState] State changed from [ReplayState] to [LootState]
+[22:36:41.090] [GameMessageHandler] Handled: type=NetMessageGameSim, id=J3i, durationMs=1, result=success
+[22:36:42.918] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=94, status=200 OK, durationMs=284, result=success, endpoint=/commands
+[22:36:42.918] [AppState] State changed from [LootState] to [ChoiceState]
+[22:36:42.920] [BoardManager] Card Purchased: InstanceId: itm_yCs1MYm - TemplateIddc3bf5cb-45fa-46c7-9a0e-3f3bfb01697d - Target:PlayerStorageSocket_0 - SectionStorage
+[22:36:42.923] [GameMessageHandler] Handled: type=NetMessageGameSim, id=2Eo, durationMs=4, result=success
+[22:36:47.852] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=95, status=200 OK, durationMs=75, result=success, endpoint=/commands
+[22:36:47.852] [BoardManager] Sold Card itm_yCs1MYm for 2 gold.
+[22:36:48.743] [CardOperationUtility] Failed to move card itm_XEk9r0I to player's inventory
+[22:38:18.622] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=96, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:38:18.622] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:38:18.622] [BoardManager] Card Purchased: InstanceId: enc_Z8HrGU3 - TemplateIdc5326dd7-3e82-45c5-9a6c-81965a78bf89 - Target:OpponentSocket_5 - SectionOpponent
+[22:38:18.624] [GameMessageHandler] Handled: type=NetMessageGameSim, id=49j, durationMs=2, result=success
+[22:38:20.648] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=97, status=200 OK, durationMs=64, result=success, endpoint=/commands
+[22:38:20.653] [BoardManager] Card Purchased: InstanceId: ste_oLCKdWW - TemplateId76256f50-8f01-47d7-bd9a-107be2ff2284 - Target:OpponentSocket_5 - SectionOpponent
+[22:38:20.653] [GameMessageHandler] Handled: type=NetMessageGameSim, id=I6E, durationMs=4, result=success
+[22:38:22.109] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=98, status=200 OK, durationMs=64, result=success, endpoint=/commands
+[22:38:22.109] [AppState] State changed from [EncounterState] to [LevelUpState]
+[22:38:22.117] [BoardManager] Card Purchased: InstanceId: itm_6lR8Z1- - TemplateId49d2fab6-9076-4a81-a7f6-b2409b6b5021 - Target:PlayerStorageSocket_0 - SectionStorage
+[22:38:22.120] [GameMessageHandler] Handled: type=NetMessageGameSim, id=XHo, durationMs=10, result=success
+[22:38:26.285] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=99, status=200 OK, durationMs=231, result=success, endpoint=/commands
+[22:38:26.285] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:38:26.295] [BoardManager] Card Purchased: InstanceId: enc_LYsDDn3 - TemplateId4a9ccdf5-8f2b-478f-9060-2b5dc14fc0f0 - Target:OpponentSocket_5 - SectionOpponent
+[22:38:26.296] [GameMessageHandler] Handled: type=NetMessageGameSim, id=WWm, durationMs=10, result=success
+[22:38:26.296] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:38:28.400] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=100, status=200 OK, durationMs=140, result=success, endpoint=/commands
+[22:38:28.400] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:38:28.402] [BoardManager] Card Purchased: InstanceId: itm_vmpSE61 - TemplateId47a8d943-cfbe-416f-9ce6-700c431b66f3 - Target:PlayerStorageSocket_2 - SectionStorage
+[22:38:28.404] [GameMessageHandler] Handled: type=NetMessageGameSim, id=VSN, durationMs=4, result=success
+[22:38:31.098] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=101, status=200 OK, durationMs=198, result=success, endpoint=/commands
+[22:38:31.098] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:38:31.099] [BoardManager] Card Purchased: InstanceId: enc_Ak8VOgs - TemplateId1f56ada9-2f87-469e-ad8b-29f7bc5754f2 - Target:OpponentSocket_5 - SectionOpponent
+[22:38:31.100] [GameMessageHandler] Handled: type=NetMessageGameSim, id=Y8U, durationMs=1, result=success
+[22:38:32.860] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=102, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:38:32.860] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:38:32.860] [BoardManager] Card Purchased: InstanceId: itm_E7PkjPJ - TemplateIda8b604d0-de28-400f-8a4b-d5b29ccfba27 - Target:PlayerSocket_0 - SectionPlayer
+[22:38:32.866] [GameMessageHandler] Handled: type=NetMessageGameSim, id=U_6, durationMs=5, result=success
+[22:38:54.006] [CardOperationUtility] Failed to move card itm_9XhJBBZ to player's inventory
+[22:39:16.361] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=113, status=200 OK, durationMs=1052, result=success, endpoint=/commands
+[22:39:16.361] [GameSimHandler] GameSim cards: id=qy7, dealt=0, spawned=13, disposed=0
+[22:39:16.467] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:39:16.528] [BoardManager] Card Purchased: InstanceId: pvp_RXoEXwy - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:39:16.529] [GameMessageHandler] Handled: type=NetMessageGameSim, id=qy7, durationMs=168, result=success
+[22:39:28.827] [CombatSimHandler] Combat prepared: frames=301, effectsMs=0
+[22:39:43.880] [CombatSimHandler] Combat simulation completed: durationMs=15054
+[22:39:49.961] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=vY8, durationMs=33493, result=success
+[22:39:49.989] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:39:52.130] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:39:52.134] [GameMessageHandler] Handled: type=NetMessageGameSim, id=2WE, durationMs=5, result=success
+[22:40:07.315] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=114, status=200 OK, durationMs=130, result=success, endpoint=/commands
+[22:40:07.316] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:40:07.316] [BoardManager] Card Purchased: InstanceId: enc_1lgIjUC - TemplateId731fdecd-bc3f-48a7-bdf9-4096f3eaa963 - Target:OpponentSocket_5 - SectionOpponent
+[22:40:07.318] [GameMessageHandler] Handled: type=NetMessageGameSim, id=OVS, durationMs=2, result=success
+[22:40:09.293] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=115, status=200 OK, durationMs=215, result=success, endpoint=/commands
+[22:40:09.293] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:40:09.295] [BoardManager] Card Purchased: InstanceId: itm_4_nJNvF - TemplateId13081c31-f8b4-400d-bedc-8f311b08153b - Target:PlayerStorageSocket_1 - SectionStorage
+[22:40:09.298] [GameMessageHandler] Handled: type=NetMessageGameSim, id=qWZ, durationMs=5, result=success
+[22:40:15.076] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=118, status=200 OK, durationMs=91, result=success, endpoint=/commands
+[22:40:15.076] [BoardManager] Sold Card itm_iNp_3vR for 2 gold.
+[22:40:16.095] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=119, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:40:16.095] [BoardManager] Sold Card itm_E7PkjPJ for 2 gold.
+[22:40:23.105] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=120, status=200 OK, durationMs=115, result=success, endpoint=/commands
+[22:40:23.105] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:40:23.322] [BoardManager] Card Purchased: InstanceId: enc__lRPlxu - TemplateId5b7c5fc4-c942-44fe-9ca8-726dc36a2ad6 - Target:OpponentSocket_5 - SectionOpponent
+[22:40:23.325] [GameMessageHandler] Handled: type=NetMessageGameSim, id=rtn, durationMs=220, result=success
+[22:40:26.195] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=121, status=200 OK, durationMs=100, result=success, endpoint=/commands
+[22:40:26.200] [BoardManager] Card Purchased: InstanceId: itm_vmpSE61 - TemplateId47a8d943-cfbe-416f-9ce6-700c431b66f3 - Target:PlayerStorageSocket_3 - SectionStorage
+[22:40:26.200] [GameMessageHandler] Handled: type=NetMessageGameSim, id=KAT, durationMs=4, result=success
+[22:40:33.096] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=122, status=200 OK, durationMs=198, result=success, endpoint=/commands
+[22:40:35.972] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=123, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:40:35.972] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:40:39.185] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=124, status=200 OK, durationMs=922, result=success, endpoint=/commands
+[22:40:39.185] [GameSimHandler] GameSim cards: id=af1, dealt=0, spawned=9, disposed=2
+[22:40:39.298] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:40:39.298] [BoardManager] Card Purchased: InstanceId: com_pibUfKE - TemplateId4a4542cd-91d8-4463-84fc-c111fc7535ee - Target:OpponentSocket_5 - SectionOpponent
+[22:40:39.302] [GameMessageHandler] Handled: type=NetMessageGameSim, id=af1, durationMs=116, result=success
+[22:40:43.452] [CombatSimHandler] Combat prepared: frames=281, effectsMs=0
+[22:40:57.509] [CombatSimHandler] Combat simulation completed: durationMs=14057
+[22:41:03.577] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=A4w, durationMs=24279, result=success
+[22:41:03.602] [AppState] State changed from [CombatState] to [ReplayState]
+[22:41:04.810] [AppState] State changed from [ReplayState] to [LootState]
+[22:41:04.810] [GameMessageHandler] Handled: type=NetMessageGameSim, id=NZ3, durationMs=1, result=success
+[22:41:06.868] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=125, status=200 OK, durationMs=314, result=success, endpoint=/commands
+[22:41:06.868] [AppState] State changed from [LootState] to [ChoiceState]
+[22:41:06.874] [BoardManager] Card Purchased: InstanceId: itm_KaN8ntb - TemplateId54040bca-14e5-4f6d-bfa8-b67658adda0b - Target:PlayerStorageSocket_0 - SectionStorage
+[22:41:06.876] [GameMessageHandler] Handled: type=NetMessageGameSim, id=3Fv, durationMs=8, result=success
+[22:41:13.069] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=126, status=200 OK, durationMs=520, result=success, endpoint=/commands
+[22:41:13.069] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:41:13.074] [BoardManager] Card Purchased: InstanceId: enc_ZtJalwP - TemplateId705c0d8e-8513-49ce-82e8-81782cdac316 - Target:OpponentSocket_5 - SectionOpponent
+[22:41:13.076] [GameMessageHandler] Handled: type=NetMessageGameSim, id=0-r, durationMs=6, result=success
+[22:41:15.623] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=127, status=200 OK, durationMs=67, result=success, endpoint=/commands
+[22:41:15.623] [BoardManager] Card Purchased: InstanceId: itm_H_JUzsh - TemplateId618271c5-5721-40ac-b1c7-43aa06a02d07 - Target:PlayerStorageSocket_1 - SectionStorage
+[22:41:15.627] [GameMessageHandler] Handled: type=NetMessageGameSim, id=1Pz, durationMs=3, result=success
+[22:41:16.978] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=128, status=200 OK, durationMs=98, result=success, endpoint=/commands
+[22:41:20.977] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=129, status=200 OK, durationMs=65, result=success, endpoint=/commands
+[22:41:20.977] [AppState] State changed from [EncounterState] to [LevelUpState]
+[22:41:22.283] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=130, status=200 OK, durationMs=98, result=success, endpoint=/commands
+[22:41:22.283] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:41:22.287] [BoardManager] Card Purchased: InstanceId: enc_E9hyOCE - TemplateId4c3d4b9d-e5b7-469c-be91-67b213c5a975 - Target:OpponentSocket_5 - SectionOpponent
+[22:41:22.289] [GameMessageHandler] Handled: type=NetMessageGameSim, id=npX, durationMs=5, result=success
+[22:41:22.289] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:41:39.043] [AppState] Selected skill skl_3KAy13G to socket SkillSocket_0
+[22:41:39.228] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=131, status=200 OK, durationMs=181, result=success, endpoint=/commands
+[22:41:39.228] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:41:47.782] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=133, status=200 OK, durationMs=81, result=success, endpoint=/commands
+[22:41:47.782] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:41:47.782] [BoardManager] Card Purchased: InstanceId: enc_S1nTibd - TemplateIdce38f4a2-f156-4082-b8ce-e8956c71fc0d - Target:OpponentSocket_5 - SectionOpponent
+[22:41:52.497] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=134, status=200 OK, durationMs=1907, result=success, endpoint=/commands
+[22:41:52.497] [GameSimHandler] GameSim cards: id=95z, dealt=0, spawned=18, disposed=0
+[22:41:52.607] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:41:52.633] [BoardManager] Card Purchased: InstanceId: pvp_BwnH_uR - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:41:52.635] [GameMessageHandler] Handled: type=NetMessageGameSim, id=95z, durationMs=136, result=success
+[22:42:05.046] [CombatSimHandler] Combat prepared: frames=328, effectsMs=0
+[22:42:21.461] [CombatSimHandler] Combat simulation completed: durationMs=16415
+[22:42:27.555] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=dlW, durationMs=34947, result=success
+[22:42:27.580] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:42:28.913] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:42:37.168] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=135, status=200 OK, durationMs=114, result=success, endpoint=/commands
+[22:42:37.168] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:42:37.168] [BoardManager] Card Purchased: InstanceId: enc_FsKkYsb - TemplateIdab256aab-9578-4eb8-a821-85b5c9e892d8 - Target:OpponentSocket_5 - SectionOpponent
+[22:42:39.184] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=136, status=200 OK, durationMs=352, result=success, endpoint=/commands
+[22:42:39.184] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:42:39.188] [BoardManager] Card Purchased: InstanceId: itm_KC7kk5v - TemplateIde45d3e01-ed5e-4b13-b50b-668adecd485b - Target:PlayerStorageSocket_5 - SectionStorage
+[22:42:44.818] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=137, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:42:44.818] [BoardManager] Sold Card itm_KC7kk5v for 4 gold.
+[22:42:47.653] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=139, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:42:47.653] [BoardManager] Sold Card itm_KaN8ntb for 2 gold.
+[22:42:50.518] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=141, status=200 OK, durationMs=97, result=success, endpoint=/commands
+[22:42:50.518] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:42:50.521] [BoardManager] Card Purchased: InstanceId: enc_-B-iKEm - TemplateId33a881fa-66fc-4a98-8744-de38c1d44baf - Target:OpponentSocket_5 - SectionOpponent
+[22:42:53.531] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=142, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[22:42:53.532] [BoardManager] Sold Card itm_0HAGvSq for 0 gold.
+[22:42:54.009] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=143, status=200 OK, durationMs=74, result=success, endpoint=/commands
+[22:42:54.009] [BoardManager] Sold Card itm_CWgrq9C for 0 gold.
+[22:42:54.434] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=144, status=200 OK, durationMs=73, result=success, endpoint=/commands
+[22:42:54.435] [BoardManager] Sold Card itm_TbghiUY for 0 gold.
+[22:42:59.969] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=145, status=200 OK, durationMs=868, result=success, endpoint=/commands
+[22:42:59.969] [GameSimHandler] GameSim cards: id=P9j, dealt=0, spawned=11, disposed=2
+[22:43:00.081] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:43:00.082] [BoardManager] Card Purchased: InstanceId: com_NRBYwdZ - TemplateId47c042ba-707a-4e00-aea2-c1ed2ed880e5 - Target:OpponentSocket_5 - SectionOpponent
+[22:43:04.865] [CombatSimHandler] Combat prepared: frames=231, effectsMs=0
+[22:43:16.424] [CombatSimHandler] Combat simulation completed: durationMs=11559
+[22:43:22.512] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=re-, durationMs=22430, result=success
+[22:43:22.537] [AppState] State changed from [CombatState] to [ReplayState]
+[22:43:24.541] [AppState] State changed from [ReplayState] to [LootState]
+[22:43:27.019] [AppState] Selected skill skl_h-TnN-T to socket SkillSocket_0
+[22:43:27.220] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=146, status=200 OK, durationMs=198, result=success, endpoint=/commands
+[22:43:27.220] [AppState] State changed from [LootState] to [LevelUpState]
+[22:43:41.765] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=147, status=200 OK, durationMs=163, result=success, endpoint=/commands
+[22:43:41.765] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:43:41.769] [BoardManager] Card Purchased: InstanceId: enc_LudpjOc - TemplateId4a9ccdf5-8f2b-478f-9060-2b5dc14fc0f0 - Target:OpponentSocket_5 - SectionOpponent
+[22:43:41.771] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:43:45.368] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=148, status=200 OK, durationMs=668, result=success, endpoint=/commands
+[22:43:45.368] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:43:45.372] [BoardManager] Card Purchased: InstanceId: itm_KsXehgM - TemplateIdb48baf8a-1b43-47aa-9b8e-b379057d669d - Target:PlayerStorageSocket_0 - SectionStorage
+[22:43:50.173] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=149, status=200 OK, durationMs=81, result=success, endpoint=/commands
+[22:43:50.173] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:43:50.174] [BoardManager] Card Purchased: InstanceId: enc_UXTYgOn - TemplateIdb8f55bb0-536e-4d5f-a328-d38f88c6d479 - Target:OpponentSocket_5 - SectionOpponent
+[22:43:53.331] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=150, status=200 OK, durationMs=66, result=success, endpoint=/commands
+[22:43:53.336] [BoardManager] Card Purchased: InstanceId: itm_rtVU837 - TemplateId7d83c2f2-1971-4ec8-b730-9d12aec93d76 - Target:PlayerSocket_6 - SectionPlayer
+[22:43:56.278] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=151, status=200 OK, durationMs=97, result=success, endpoint=/commands
+[22:43:59.830] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=152, status=200 OK, durationMs=81, result=success, endpoint=/commands
+[22:43:59.831] [BoardManager] Card Purchased: InstanceId: itm_rbFbbMS - TemplateIdd650bafd-d5d1-4d0f-a721-066984d6c1f6 - Target:PlayerStorageSocket_1 - SectionStorage
+[22:44:01.268] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=153, status=200 OK, durationMs=280, result=success, endpoint=/commands
+[22:44:01.269] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:44:07.667] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=154, status=200 OK, durationMs=82, result=success, endpoint=/commands
+[22:44:07.667] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:44:07.685] [BoardManager] Card Purchased: InstanceId: enc_ihYXMm- - TemplateId912c8b09-3b76-4aa1-8e21-245e0dfb5046 - Target:OpponentSocket_5 - SectionOpponent
+[22:44:10.139] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=155, status=200 OK, durationMs=46, result=success, endpoint=/commands
+[22:44:10.139] [BoardManager] Card Purchased: InstanceId: itm_ng8__gX - TemplateId9d7b0b38-aaac-40b9-a189-4f1a0635ccb4 - Target:PlayerStorageSocket_2 - SectionStorage
+[22:44:53.609] [CardOperationUtility] Failed to move card itm_spsz_7P to player's inventory
+[22:45:08.763] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=166, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[22:45:08.763] [BoardManager] Sold Card itm_6lR8Z1- for 4 gold.
+[22:45:10.277] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=168, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[22:45:10.278] [BoardManager] Sold Card itm_4_nJNvF for 4 gold.
+[22:45:13.453] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=169, status=200 OK, durationMs=98, result=success, endpoint=/commands
+[22:45:15.863] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=170, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:45:15.863] [BoardManager] Card Purchased: InstanceId: itm_sI9pKH2 - TemplateIde0c12480-b4f6-44e7-844d-b695cace791c - Target:PlayerStorageSocket_1 - SectionStorage
+[22:45:33.770] [CardOperationUtility] Failed to move card itm_H_JUzsh to player's inventory
+[22:46:22.396] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=181, status=200 OK, durationMs=99, result=success, endpoint=/commands
+[22:46:22.396] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:46:25.886] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=182, status=200 OK, durationMs=1823, result=success, endpoint=/commands
+[22:46:25.886] [GameSimHandler] GameSim cards: id=_XI, dealt=0, spawned=15, disposed=0
+[22:46:25.996] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:46:26.040] [BoardManager] Card Purchased: InstanceId: pvp_btiFQ1f - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:46:38.385] [CombatSimHandler] Combat prepared: frames=341, effectsMs=0
+[22:46:55.448] [CombatSimHandler] Combat simulation completed: durationMs=17063
+[22:47:01.524] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=60U, durationMs=35528, result=success
+[22:47:01.548] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:47:03.224] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:47:10.935] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=183, status=200 OK, durationMs=148, result=success, endpoint=/commands
+[22:47:10.935] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:47:10.940] [BoardManager] Card Purchased: InstanceId: enc_pnuyF5e - TemplateIde3b894b0-a078-4b1d-8793-ac6459a8361a - Target:OpponentSocket_5 - SectionOpponent
+[22:47:16.741] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=184, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:47:16.742] [BoardManager] Sold Card itm_9XhJBBZ for 4 gold.
+[22:47:17.676] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=185, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[22:47:17.676] [BoardManager] Sold Card itm_vmpSE61 for 8 gold.
+[22:47:24.029] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=187, status=200 OK, durationMs=164, result=success, endpoint=/commands
+[22:47:26.808] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=188, status=200 OK, durationMs=79, result=success, endpoint=/commands
+[22:47:26.814] [BoardManager] Card Purchased: InstanceId: itm_zstEou9 - TemplateIde6d331a7-c0e3-4619-9eee-c7c5023969bb - Target:PlayerSocket_1 - SectionPlayer
+[22:47:30.141] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=189, status=200 OK, durationMs=381, result=success, endpoint=/commands
+[22:47:30.141] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:47:41.500] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=190, status=200 OK, durationMs=114, result=success, endpoint=/commands
+[22:47:41.500] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:47:41.505] [BoardManager] Card Purchased: InstanceId: enc_zpZhL_C - TemplateId3e871bbb-fb25-417f-8643-cb43456c3fc7 - Target:OpponentSocket_5 - SectionOpponent
+[22:47:45.566] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=191, status=200 OK, durationMs=269, result=success, endpoint=/commands
+[22:47:47.723] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=192, status=200 OK, durationMs=82, result=success, endpoint=/commands
+[22:47:47.729] [BoardManager] Card Purchased: InstanceId: itm_ng8__gX - TemplateId9d7b0b38-aaac-40b9-a189-4f1a0635ccb4 - Target:PlayerSocket_3 - SectionPlayer
+[22:47:52.963] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=193, status=200 OK, durationMs=80, result=success, endpoint=/commands
+[22:47:52.963] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:47:56.488] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=194, status=200 OK, durationMs=1147, result=success, endpoint=/commands
+[22:47:56.489] [GameSimHandler] GameSim cards: id=-UE, dealt=0, spawned=7, disposed=2
+[22:47:56.598] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:47:56.598] [BoardManager] Card Purchased: InstanceId: com_J-QrK1m - TemplateIde8782aea-3511-4a9d-98d4-e25c62120547 - Target:OpponentSocket_5 - SectionOpponent
+[22:48:00.752] [CombatSimHandler] Combat prepared: frames=371, effectsMs=0
+[22:48:19.307] [CombatSimHandler] Combat simulation completed: durationMs=18555
+[22:48:25.398] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=FFT, durationMs=28801, result=success
+[22:48:25.424] [AppState] State changed from [CombatState] to [ReplayState]
+[22:48:33.827] [AppState] State changed from [ReplayState] to [LootState]
+[22:48:35.501] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=195, status=200 OK, durationMs=62, result=success, endpoint=/commands
+[22:48:35.502] [AppState] State changed from [LootState] to [LevelUpState]
+[22:48:35.503] [BoardManager] Card Purchased: InstanceId: itm_nNuKxkE - TemplateIdc400ec7f-8d7a-4845-9ab4-06bac18ef551 - Target:PlayerStorageSocket_1 - SectionStorage
+[22:48:54.914] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=196, status=200 OK, durationMs=80, result=success, endpoint=/commands
+[22:48:54.914] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:48:55.127] [BoardManager] Card Purchased: InstanceId: enc_8pJ-R3O - TemplateId4c3d4b9d-e5b7-469c-be91-67b213c5a975 - Target:OpponentSocket_5 - SectionOpponent
+[22:48:55.130] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:48:59.865] [AppState] Selected skill skl_iAShqPc to socket SkillSocket_0
+[22:49:00.134] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=197, status=200 OK, durationMs=264, result=success, endpoint=/commands
+[22:49:00.134] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:49:04.979] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=198, status=200 OK, durationMs=164, result=success, endpoint=/commands
+[22:49:04.979] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:49:04.980] [BoardManager] Card Purchased: InstanceId: enc_JrfkENk - TemplateId5b7c5fc4-c942-44fe-9ca8-726dc36a2ad6 - Target:OpponentSocket_5 - SectionOpponent
+[22:49:07.863] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=199, status=200 OK, durationMs=218, result=success, endpoint=/commands
+[22:49:10.664] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=200, status=200 OK, durationMs=497, result=success, endpoint=/commands
+[22:49:10.664] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:49:25.841] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=201, status=200 OK, durationMs=130, result=success, endpoint=/commands
+[22:49:25.841] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:49:25.843] [BoardManager] Card Purchased: InstanceId: enc_ou5rTwC - TemplateId2ee65e2b-c679-41b6-812d-5dd59a5cb27a - Target:OpponentSocket_5 - SectionOpponent
+[22:49:41.212] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=202, status=200 OK, durationMs=147, result=success, endpoint=/commands
+[22:49:41.212] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:49:41.446] [BoardManager] Card Purchased: InstanceId: enc_mBzRC4H - TemplateId5b7c5fc4-c942-44fe-9ca8-726dc36a2ad6 - Target:OpponentSocket_5 - SectionOpponent
+[22:49:44.097] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=203, status=200 OK, durationMs=112, result=success, endpoint=/commands
+[22:49:52.045] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=204, status=200 OK, durationMs=55, result=success, endpoint=/commands
+[22:49:52.046] [BoardManager] Sold Card itm_nNuKxkE for 4 gold.
+[22:49:53.832] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=205, status=200 OK, durationMs=47, result=success, endpoint=/commands
+[22:49:53.832] [BoardManager] Card Purchased: InstanceId: itm_4Xggrgy - TemplateId7f8e387a-4947-4823-bc41-8f4b6025ae7c - Target:PlayerStorageSocket_1 - SectionStorage
+[22:49:55.471] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=206, status=200 OK, durationMs=48, result=success, endpoint=/commands
+[22:49:55.471] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:50:24.072] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=207, status=200 OK, durationMs=1355, result=success, endpoint=/commands
+[22:50:24.072] [GameSimHandler] GameSim cards: id=a5c, dealt=0, spawned=13, disposed=0
+[22:50:24.181] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:50:24.219] [BoardManager] Card Purchased: InstanceId: pvp__6RIrVZ - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:50:36.756] [CombatSimHandler] Combat prepared: frames=281, effectsMs=0
+[22:50:50.818] [CombatSimHandler] Combat simulation completed: durationMs=14062
+[22:50:56.914] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=bLt, durationMs=32733, result=success
+[22:50:56.938] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:50:58.455] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:51:08.670] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=208, status=200 OK, durationMs=430, result=success, endpoint=/commands
+[22:51:08.670] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:51:08.670] [BoardManager] Card Purchased: InstanceId: enc_07GAKyC - TemplateIddc12f4bd-6c33-41f0-b7ad-d62a0be09a47 - Target:OpponentSocket_5 - SectionOpponent
+[22:51:11.793] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=209, status=200 OK, durationMs=132, result=success, endpoint=/commands
+[22:51:15.098] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=210, status=200 OK, durationMs=433, result=success, endpoint=/commands
+[22:51:15.098] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:51:20.710] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=211, status=200 OK, durationMs=314, result=success, endpoint=/commands
+[22:51:20.710] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:51:20.917] [BoardManager] Card Purchased: InstanceId: enc_UxbbPLH - TemplateId85db60ee-3619-4e39-bfb2-2f4ac56f172b - Target:OpponentSocket_5 - SectionOpponent
+[22:51:24.076] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=212, status=200 OK, durationMs=349, result=success, endpoint=/commands
+[22:51:32.907] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=213, status=200 OK, durationMs=130, result=success, endpoint=/commands
+[22:51:32.907] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:51:38.061] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=214, status=200 OK, durationMs=1120, result=success, endpoint=/commands
+[22:51:38.061] [GameSimHandler] GameSim cards: id=GxK, dealt=0, spawned=9, disposed=2
+[22:51:38.172] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:51:38.173] [BoardManager] Card Purchased: InstanceId: com_Ltx48p0 - TemplateId25a7a800-1c64-4728-a4fe-eb5a3f3394a0 - Target:OpponentSocket_5 - SectionOpponent
+[22:51:42.400] [CombatSimHandler] Combat prepared: frames=331, effectsMs=0
+[22:51:58.964] [CombatSimHandler] Combat simulation completed: durationMs=16564
+[22:52:05.054] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=Bkz, durationMs=26882, result=success
+[22:52:05.078] [AppState] State changed from [CombatState] to [ReplayState]
+[22:52:06.584] [AppState] State changed from [ReplayState] to [LootState]
+[22:52:11.605] [AppState] Selected skill skl_XlpAqzu to socket SkillSocket_0
+[22:52:11.672] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=215, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:52:11.673] [AppState] State changed from [LootState] to [LevelUpState]
+[22:52:16.244] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=216, status=200 OK, durationMs=96, result=success, endpoint=/commands
+[22:52:16.244] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:52:16.246] [BoardManager] Card Purchased: InstanceId: enc_94lQfuS - TemplateIda07fbe69-c1d0-41a3-af72-d517e7706718 - Target:OpponentSocket_5 - SectionOpponent
+[22:52:16.248] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:52:20.581] [AppState] Selected skill skl__Mofm2w to socket SkillSocket_0
+[22:52:21.033] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=217, status=200 OK, durationMs=449, result=success, endpoint=/commands
+[22:52:21.033] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:52:26.768] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=218, status=200 OK, durationMs=702, result=success, endpoint=/commands
+[22:52:26.768] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:52:26.770] [BoardManager] Card Purchased: InstanceId: enc_6M_EsJS - TemplateIdce38f4a2-f156-4082-b8ce-e8956c71fc0d - Target:OpponentSocket_5 - SectionOpponent
+[22:52:31.054] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=219, status=200 OK, durationMs=46, result=success, endpoint=/commands
+[22:52:31.054] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:52:31.058] [BoardManager] Card Purchased: InstanceId: enc_ZCAUwhd - TemplateId9178c378-9e59-4e92-9023-17105e0686d3 - Target:OpponentSocket_5 - SectionOpponent
+[22:52:32.751] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=220, status=200 OK, durationMs=81, result=success, endpoint=/commands
+[22:52:32.751] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:52:32.751] [BoardManager] Card Purchased: InstanceId: itm_66dH_JM - TemplateId594fdef4-f76b-4e77-b54c-0212b583f133 - Target:PlayerStorageSocket_4 - SectionStorage
+[22:52:36.357] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=221, status=200 OK, durationMs=56, result=success, endpoint=/commands
+[22:52:36.358] [BoardManager] Sold Card itm_66dH_JM for 4 gold.
+[22:52:46.333] [CardOperationUtility] Failed to move card itm_H9goJkx to player's inventory
+[22:53:02.438] [CardOperationUtility] Failed to move card itm_sI9pKH2 to player's inventory
+[22:53:25.554] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=240, status=200 OK, durationMs=2408, result=success, endpoint=/commands
+[22:53:25.554] [GameSimHandler] GameSim cards: id=tcw, dealt=0, spawned=15, disposed=0
+[22:53:25.661] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:53:25.704] [BoardManager] Card Purchased: InstanceId: pvp_RXr4jUG - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:53:37.911] [CombatSimHandler] Combat prepared: frames=791, effectsMs=2
+[22:54:17.472] [CombatSimHandler] Combat simulation completed: durationMs=39562
+[22:54:23.566] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=MVa, durationMs=57905, result=success
+[22:54:25.380] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:54:27.512] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:54:34.275] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=241, status=200 OK, durationMs=129, result=success, endpoint=/commands
+[22:54:34.277] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:54:34.497] [BoardManager] Card Purchased: InstanceId: enc_KODcNug - TemplateId5b7c5fc4-c942-44fe-9ca8-726dc36a2ad6 - Target:OpponentSocket_5 - SectionOpponent
+[22:54:54.716] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=242, status=200 OK, durationMs=56, result=success, endpoint=/commands
+[22:54:54.716] [BoardManager] Sold Card itm_KsXehgM for 2 gold.
+[22:55:03.297] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=245, status=200 OK, durationMs=183, result=success, endpoint=/commands
+[22:55:06.343] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=246, status=200 OK, durationMs=616, result=success, endpoint=/commands
+[22:55:06.343] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:55:09.173] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=247, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:55:09.173] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:55:09.176] [BoardManager] Card Purchased: InstanceId: enc_jL-hjhU - TemplateIdce38f4a2-f156-4082-b8ce-e8956c71fc0d - Target:OpponentSocket_5 - SectionOpponent
+[22:55:14.686] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=248, status=200 OK, durationMs=1101, result=success, endpoint=/commands
+[22:55:14.686] [GameSimHandler] GameSim cards: id=YOs, dealt=0, spawned=9, disposed=2
+[22:55:14.795] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:55:14.796] [BoardManager] Card Purchased: InstanceId: com_ZaE9I0Z - TemplateIda04b33a7-eb29-456a-9a7c-63dd8553b872 - Target:OpponentSocket_5 - SectionOpponent
+[22:55:18.486] [CombatSimHandler] Combat prepared: frames=391, effectsMs=0
+[22:55:38.044] [CombatSimHandler] Combat simulation completed: durationMs=19558
+[22:55:44.125] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=G-X, durationMs=29329, result=success
+[22:55:44.151] [AppState] State changed from [CombatState] to [ReplayState]
+[22:55:45.283] [AppState] State changed from [ReplayState] to [LootState]
+[22:55:46.976] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=249, status=200 OK, durationMs=113, result=success, endpoint=/commands
+[22:55:46.977] [AppState] State changed from [LootState] to [LevelUpState]
+[22:55:46.982] [BoardManager] Card Purchased: InstanceId: itm_06VIU9U - TemplateId840b6bc5-4786-40bc-b864-cc5c2b78641a - Target:PlayerStorageSocket_0 - SectionStorage
+[22:55:49.822] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=250, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[22:55:49.822] [AppState] State changed from [LevelUpState] to [EncounterState]
+[22:55:50.013] [BoardManager] Card Purchased: InstanceId: enc_0YWiOKo - TemplateId7a4f9be7-9132-45a2-9885-6f2ce40a59be - Target:OpponentSocket_5 - SectionOpponent
+[22:55:50.015] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:55:51.652] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=251, status=200 OK, durationMs=180, result=success, endpoint=/commands
+[22:55:51.658] [BoardManager] Card Purchased: InstanceId: ste_HgXMCJu - TemplateIdb8252f75-a642-4db9-9c8a-2870bf77ae47 - Target:OpponentSocket_5 - SectionOpponent
+[22:55:54.416] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=252, status=200 OK, durationMs=616, result=success, endpoint=/commands
+[22:55:54.416] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:55:54.417] [BoardManager] Card Purchased: InstanceId: itm_3XRRwNO - TemplateId82a40f01-8145-45ea-8185-b565dc9bad7a - Target:PlayerStorageSocket_1 - SectionStorage
+[22:55:58.454] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=253, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:55:58.454] [BoardManager] Sold Card itm_3XRRwNO for 4 gold.
+[22:55:59.034] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=254, status=200 OK, durationMs=42, result=success, endpoint=/commands
+[22:55:59.034] [BoardManager] Sold Card itm_06VIU9U for 2 gold.
+[22:56:38.662] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=264, status=200 OK, durationMs=583, result=success, endpoint=/commands
+[22:56:38.662] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:56:38.665] [BoardManager] Card Purchased: InstanceId: enc_lbPC1GW - TemplateIde6b0bc78-4284-4bc7-b130-f5d04007ccf6 - Target:OpponentSocket_5 - SectionOpponent
+[22:56:43.913] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=265, status=200 OK, durationMs=48, result=success, endpoint=/commands
+[22:56:43.914] [AppState] State changed from [ChoiceState] to [PedestalState]
+[22:56:43.914] [BoardManager] Card Purchased: InstanceId: ped_F_HGFvd - TemplateId8b811b0f-15ba-4282-9732-6ddccb26da9f - Target:OpponentSocket_5 - SectionOpponent
+[22:56:47.463] [NetworkManager] [HttpGameClient] Command completed: type=CommitToPedestalCommand, requestId=266, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[22:56:49.541] [AppState] State changed from [PedestalState] to [ChoiceState]
+[22:56:58.254] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=267, status=200 OK, durationMs=1605, result=success, endpoint=/commands
+[22:56:58.254] [GameSimHandler] GameSim cards: id=yWc, dealt=0, spawned=19, disposed=0
+[22:56:58.361] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:56:58.413] [BoardManager] Card Purchased: InstanceId: pvp_1kcV6zT - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[22:57:10.405] [CombatSimHandler] Combat prepared: frames=441, effectsMs=1
+[22:57:32.461] [CombatSimHandler] Combat simulation completed: durationMs=22056
+[22:57:38.544] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=pFl, durationMs=40183, result=success
+[22:57:41.364] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[22:57:43.534] [AppState] State changed from [ReplayState] to [ChoiceState]
+[22:57:56.768] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=268, status=200 OK, durationMs=113, result=success, endpoint=/commands
+[22:57:56.768] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:57:56.978] [BoardManager] Card Purchased: InstanceId: enc_1gx4fMD - TemplateIde3b894b0-a078-4b1d-8793-ac6459a8361a - Target:OpponentSocket_5 - SectionOpponent
+[22:58:00.121] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=269, status=200 OK, durationMs=46, result=success, endpoint=/commands
+[22:58:00.127] [BoardManager] Card Purchased: InstanceId: itm_rbFbbMS - TemplateIdd650bafd-d5d1-4d0f-a721-066984d6c1f6 - Target:PlayerStorageSocket_9 - SectionStorage
+[22:58:03.059] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=270, status=200 OK, durationMs=368, result=success, endpoint=/commands
+[22:58:06.006] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=271, status=200 OK, durationMs=297, result=success, endpoint=/commands
+[22:58:06.006] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:58:12.370] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=272, status=200 OK, durationMs=46, result=success, endpoint=/commands
+[22:58:12.370] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[22:58:12.373] [BoardManager] Card Purchased: InstanceId: enc_qECq9Np - TemplateIde6b0bc78-4284-4bc7-b130-f5d04007ccf6 - Target:OpponentSocket_5 - SectionOpponent
+[22:58:15.251] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=273, status=200 OK, durationMs=531, result=success, endpoint=/commands
+[22:58:15.251] [GameSimHandler] GameSim cards: id=ZT3, dealt=0, spawned=11, disposed=2
+[22:58:15.361] [AppState] State changed from [ChoiceState] to [CombatState]
+[22:58:15.362] [BoardManager] Card Purchased: InstanceId: com_Q-0EyPS - TemplateId254b6aca-26a9-4014-86c3-0da827519c73 - Target:OpponentSocket_5 - SectionOpponent
+[22:58:19.526] [CombatSimHandler] Combat prepared: frames=361, effectsMs=1
+[22:58:37.585] [CombatSimHandler] Combat simulation completed: durationMs=18060
+[22:58:43.681] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=YX_, durationMs=28319, result=success
+[22:58:43.706] [AppState] State changed from [CombatState] to [ReplayState]
+[22:58:44.894] [AppState] State changed from [ReplayState] to [LootState]
+[22:58:46.887] [AppState] Selected skill skl_kA591Q1 to socket SkillSocket_0
+[22:58:47.372] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=274, status=200 OK, durationMs=481, result=success, endpoint=/commands
+[22:58:47.372] [AppState] State changed from [LootState] to [LevelUpState]
+[22:59:18.562] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=275, status=200 OK, durationMs=64, result=success, endpoint=/commands
+[22:59:18.562] [AppState] State changed from [LevelUpState] to [PedestalState]
+[22:59:18.562] [BoardManager] Card Purchased: InstanceId: ped_-HbVOq9 - TemplateId5f65bbe1-bf39-4fe7-8eeb-57b669df1ee6 - Target:OpponentSocket_5 - SectionOpponent
+[22:59:18.564] [AppState] State changed from [PedestalState] to [PedestalState]
+[22:59:21.430] [NetworkManager] [HttpGameClient] Command completed: type=CommitToPedestalCommand, requestId=276, status=200 OK, durationMs=458, result=success, endpoint=/commands
+[22:59:25.021] [AppState] State changed from [PedestalState] to [ChoiceState]
+[22:59:30.119] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=277, status=200 OK, durationMs=146, result=success, endpoint=/commands
+[22:59:30.119] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:59:30.123] [BoardManager] Card Purchased: InstanceId: enc__dhXHVp - TemplateId2ee65e2b-c679-41b6-812d-5dd59a5cb27a - Target:OpponentSocket_5 - SectionOpponent
+[22:59:34.037] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=278, status=200 OK, durationMs=233, result=success, endpoint=/commands
+[22:59:34.037] [AppState] State changed from [EncounterState] to [EncounterState]
+[22:59:34.041] [BoardManager] Card Purchased: InstanceId: enc_8XXdLYJ - TemplateId892de564-d894-4e07-ab21-959e16e8cdf8 - Target:OpponentSocket_5 - SectionOpponent
+[22:59:37.728] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=279, status=200 OK, durationMs=386, result=success, endpoint=/commands
+[22:59:40.240] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=280, status=200 OK, durationMs=330, result=success, endpoint=/commands
+[22:59:40.241] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:59:45.585] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=281, status=200 OK, durationMs=97, result=success, endpoint=/commands
+[22:59:45.585] [AppState] State changed from [ChoiceState] to [EncounterState]
+[22:59:45.822] [BoardManager] Card Purchased: InstanceId: enc_pDnPM8w - TemplateId912c8b09-3b76-4aa1-8e21-245e0dfb5046 - Target:OpponentSocket_5 - SectionOpponent
+[22:59:48.175] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=282, status=200 OK, durationMs=82, result=success, endpoint=/commands
+[22:59:50.223] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=283, status=200 OK, durationMs=149, result=success, endpoint=/commands
+[22:59:50.224] [AppState] State changed from [EncounterState] to [ChoiceState]
+[22:59:53.934] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=284, status=200 OK, durationMs=2104, result=success, endpoint=/commands
+[22:59:53.934] [GameSimHandler] GameSim cards: id=0Ft, dealt=0, spawned=22, disposed=0
+[22:59:54.042] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[22:59:54.188] [BoardManager] Card Purchased: InstanceId: pvp_Qybf0fr - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[23:00:06.166] [CombatSimHandler] Combat prepared: frames=401, effectsMs=1
+[23:00:26.220] [CombatSimHandler] Combat simulation completed: durationMs=20054
+[23:00:32.317] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=7Qb, durationMs=38274, result=success
+[23:00:34.134] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[23:00:36.153] [AppState] State changed from [ReplayState] to [ChoiceState]
+[23:00:45.259] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=285, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[23:00:45.259] [AppState] State changed from [ChoiceState] to [EncounterState]
+[23:00:45.259] [BoardManager] Card Purchased: InstanceId: enc_avGHp0b - TemplateId9178c378-9e59-4e92-9023-17105e0686d3 - Target:OpponentSocket_5 - SectionOpponent
+[23:00:47.318] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=286, status=200 OK, durationMs=514, result=success, endpoint=/commands
+[23:00:47.319] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:00:47.320] [BoardManager] Card Purchased: InstanceId: itm_vuyq8Nq - TemplateId594fdef4-f76b-4e77-b54c-0212b583f133 - Target:PlayerStorageSocket_0 - SectionStorage
+[23:00:51.892] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=287, status=200 OK, durationMs=56, result=success, endpoint=/commands
+[23:00:51.893] [BoardManager] Sold Card itm_vuyq8Nq for 4 gold.
+[23:00:55.936] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=288, status=200 OK, durationMs=147, result=success, endpoint=/commands
+[23:00:55.936] [AppState] State changed from [ChoiceState] to [EncounterState]
+[23:00:55.937] [BoardManager] Card Purchased: InstanceId: enc_sGSImi9 - TemplateId12fb92f0-b76c-4493-85eb-47a6d18bdf5f - Target:OpponentSocket_5 - SectionOpponent
+[23:00:59.694] [AppState] Selected skill skl_adhNFZQ to socket SkillSocket_0
+[23:00:59.778] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=289, status=200 OK, durationMs=79, result=success, endpoint=/commands
+[23:00:59.778] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:00:59.787] [BoardManager] Card controller for card with instance id skl_pyifQAZ not found.
+[23:01:09.482] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=290, status=200 OK, durationMs=882, result=success, endpoint=/commands
+[23:01:09.483] [GameSimHandler] GameSim cards: id=3-X, dealt=0, spawned=7, disposed=2
+[23:01:09.592] [AppState] State changed from [ChoiceState] to [CombatState]
+[23:01:09.593] [BoardManager] Card Purchased: InstanceId: com_xsNNJCD - TemplateIdfb2e242e-daf3-4771-bede-21b3adf03739 - Target:OpponentSocket_5 - SectionOpponent
+[23:01:12.741] [CombatSimHandler] Combat prepared: frames=481, effectsMs=1
+[23:01:36.793] [CombatSimHandler] Combat simulation completed: durationMs=24052
+[23:01:42.898] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=aqt, durationMs=33305, result=success
+[23:01:42.923] [AppState] State changed from [CombatState] to [ReplayState]
+[23:01:44.293] [AppState] State changed from [ReplayState] to [ChoiceState]
+[23:01:48.651] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=291, status=200 OK, durationMs=382, result=success, endpoint=/commands
+[23:01:48.651] [AppState] State changed from [ChoiceState] to [EncounterState]
+[23:01:48.866] [BoardManager] Card Purchased: InstanceId: enc_vMcQZKN - TemplateId85db60ee-3619-4e39-bfb2-2f4ac56f172b - Target:OpponentSocket_5 - SectionOpponent
+[23:01:51.758] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=292, status=200 OK, durationMs=213, result=success, endpoint=/commands
+[23:01:54.321] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=293, status=200 OK, durationMs=80, result=success, endpoint=/commands
+[23:01:54.322] [AppState] State changed from [EncounterState] to [LevelUpState]
+[23:01:57.170] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=294, status=200 OK, durationMs=79, result=success, endpoint=/commands
+[23:01:57.170] [AppState] State changed from [LevelUpState] to [EncounterState]
+[23:01:57.174] [BoardManager] Card Purchased: InstanceId: enc_96T6_wT - TemplateIdc4e01347-bcbc-e164-c848-544774f80599 - Target:OpponentSocket_5 - SectionOpponent
+[23:01:57.176] [AppState] State changed from [EncounterState] to [EncounterState]
+[23:02:04.128] [AppState] Selected skill skl_iESbmGE to socket SkillSocket_0
+[23:02:04.599] [NetworkManager] [HttpGameClient] Command completed: type=SelectSkillCommand, requestId=295, status=200 OK, durationMs=466, result=success, endpoint=/commands
+[23:02:04.600] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:02:12.407] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=296, status=200 OK, durationMs=80, result=success, endpoint=/commands
+[23:02:12.407] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[23:02:12.407] [BoardManager] Card Purchased: InstanceId: enc_tn9_gH_ - TemplateIdce38f4a2-f156-4082-b8ce-e8956c71fc0d - Target:OpponentSocket_5 - SectionOpponent
+[23:02:16.527] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=297, status=200 OK, durationMs=2374, result=success, endpoint=/commands
+[23:02:16.527] [GameSimHandler] GameSim cards: id=4sR, dealt=0, spawned=19, disposed=0
+[23:02:16.635] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[23:02:16.731] [BoardManager] Card Purchased: InstanceId: pvp_VTRsyWh - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[23:02:28.489] [CombatSimHandler] Combat prepared: frames=661, effectsMs=3
+[23:03:01.548] [CombatSimHandler] Combat simulation completed: durationMs=33062
+[23:03:07.653] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=GbS, durationMs=51017, result=success
+[23:03:07.678] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[23:03:09.353] [AppState] State changed from [ReplayState] to [EncounterState]
+[23:03:14.322] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=298, status=200 OK, durationMs=62, result=success, endpoint=/commands
+[23:03:14.324] [BoardManager] Card Purchased: InstanceId: ste_pNRYbVp - TemplateId923fa720-1f5c-4c31-89c0-8c3fb114c977 - Target:OpponentSocket_5 - SectionOpponent
+[23:03:16.871] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=299, status=200 OK, durationMs=135, result=success, endpoint=/commands
+[23:03:16.871] [AppState] State changed from [EncounterState] to [PedestalState]
+[23:03:16.871] [BoardManager] Card Purchased: InstanceId: ped_mh-gV-p - TemplateId320e7f80-334b-440c-8cc1-0b54e3141335 - Target:OpponentSocket_5 - SectionOpponent
+[23:03:23.662] [NetworkManager] [HttpGameClient] Command completed: type=CommitToPedestalCommand, requestId=300, status=200 OK, durationMs=256, result=success, endpoint=/commands
+[23:03:27.216] [AppState] State changed from [PedestalState] to [ChoiceState]
+[23:04:34.032] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=313, status=409 Conflict, durationMs=161, result=failed, endpoint=/commands, detail=/commands requires session re-establish after HTTP 409
+[23:04:34.032] [Cmd] Command requires session recovery: /commands requires session re-establish after HTTP 409
+[23:04:34.034] [NetworkManager] [HttpGameClient] Access token updated
+[23:04:34.034] [NetworkManager] [HttpGameClient] Re-establishing session via /sessions
+[23:04:34.100] [NetworkManager] [HttpGameClient] Command completed: type=InitializeRunCommand, requestId=1, status=200 OK, durationMs=65, result=success, endpoint=/sessions
+[23:04:34.184] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=2, status=200 OK, durationMs=82, result=success, endpoint=/commands
+[23:04:34.184] [AppState] State changed from [ChoiceState] to [EncounterState]
+[23:04:34.189] [BoardManager] Card Purchased: InstanceId: enc_hGEkTeg - TemplateId3f758597-56ae-400e-bc5b-92978fbe6b2c - Target:OpponentSocket_5 - SectionOpponent
+[23:04:36.471] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=3, status=200 OK, durationMs=630, result=success, endpoint=/commands
+[23:04:36.472] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:04:36.474] [BoardManager] Card Purchased: InstanceId: itm_3RIStN9 - TemplateId4c7e8e5f-93ce-4962-80e7-2b01a9f20f2c - Target:PlayerStorageSocket_0 - SectionStorage
+[23:04:58.188] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=7, status=200 OK, durationMs=79, result=success, endpoint=/commands
+[23:04:58.189] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[23:04:58.191] [BoardManager] Card Purchased: InstanceId: enc__KGC3ay - TemplateIde6b0bc78-4284-4bc7-b130-f5d04007ccf6 - Target:OpponentSocket_5 - SectionOpponent
+[23:05:03.790] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=8, status=200 OK, durationMs=2284, result=success, endpoint=/commands
+[23:05:03.790] [GameSimHandler] GameSim cards: id=kRR, dealt=0, spawned=9, disposed=2
+[23:05:03.895] [AppState] State changed from [ChoiceState] to [CombatState]
+[23:05:03.896] [BoardManager] Card Purchased: InstanceId: com_I_lA4XQ - TemplateId1e1f7b6d-746b-44d5-9906-fff137c75ef1 - Target:OpponentSocket_5 - SectionOpponent
+[23:05:07.685] [CombatSimHandler] Combat prepared: frames=251, effectsMs=1
+[23:05:20.242] [CombatSimHandler] Combat simulation completed: durationMs=12557
+[23:05:26.325] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=N1M, durationMs=22429, result=success
+[23:05:26.351] [AppState] State changed from [CombatState] to [ReplayState]
+[23:05:27.840] [AppState] State changed from [ReplayState] to [LootState]
+[23:05:29.798] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=9, status=200 OK, durationMs=144, result=success, endpoint=/commands
+[23:05:29.798] [AppState] State changed from [LootState] to [LevelUpState]
+[23:05:29.801] [BoardManager] Card Purchased: InstanceId: itm_cJ_bpkp - TemplateIdf7241086-8b2d-4882-80c9-a0ddb46910ad - Target:PlayerStorageSocket_3 - SectionStorage
+[23:05:33.790] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=10, status=200 OK, durationMs=147, result=success, endpoint=/commands
+[23:05:33.790] [AppState] State changed from [LevelUpState] to [EncounterState]
+[23:05:33.790] [BoardManager] Card Purchased: InstanceId: enc_W3Ew6Ck - TemplateIda07f89ee-2648-4f5e-9832-8a2db923a779 - Target:OpponentSocket_5 - SectionOpponent
+[23:05:33.792] [AppState] State changed from [EncounterState] to [EncounterState]
+[23:05:38.485] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=11, status=200 OK, durationMs=58, result=success, endpoint=/commands
+[23:05:38.486] [BoardManager] Sold Card itm_cJ_bpkp for 24 gold.
+[23:05:42.608] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=13, status=200 OK, durationMs=698, result=success, endpoint=/commands
+[23:05:42.608] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:05:42.608] [BoardManager] Card Purchased: InstanceId: itm_zy39MTZ - TemplateId13081c31-f8b4-400d-bedc-8f311b08153b - Target:PlayerStorageSocket_0 - SectionStorage
+[23:05:46.665] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=14, status=200 OK, durationMs=114, result=success, endpoint=/commands
+[23:05:46.666] [AppState] State changed from [ChoiceState] to [EncounterState]
+[23:05:46.866] [BoardManager] Card Purchased: InstanceId: enc_KuaeCNB - TemplateIdc3d9c329-0db6-478e-ad0f-ef2ae78834ce - Target:OpponentSocket_5 - SectionOpponent
+[23:05:51.214] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=15, status=200 OK, durationMs=62, result=success, endpoint=/commands
+[23:05:51.214] [BoardManager] Card Purchased: InstanceId: itm_c9D96um - TemplateIdb0f345cb-a769-487d-9fd4-fa5fe130f8b9 - Target:PlayerStorageSocket_2 - SectionStorage
+[23:05:52.907] [NetworkManager] [HttpGameClient] Command completed: type=RerollCommand, requestId=16, status=200 OK, durationMs=113, result=success, endpoint=/commands
+[23:06:02.115] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=17, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[23:06:02.116] [BoardManager] Sold Card itm_zy39MTZ for 8 gold.
+[23:06:03.898] [CardOperationUtility] Failed to move card itm_zstEou9 to player's inventory
+[23:06:04.591] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=18, status=200 OK, durationMs=59, result=success, endpoint=/commands
+[23:06:04.591] [BoardManager] Sold Card itm_XEk9r0I for 2 gold.
+[23:06:06.892] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=19, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[23:06:06.892] [BoardManager] Sold Card itm_rtVU837 for 2 gold.
+[23:06:07.928] [NetworkManager] [HttpGameClient] Command completed: type=SellCardCommand, requestId=20, status=200 OK, durationMs=57, result=success, endpoint=/commands
+[23:06:07.928] [BoardManager] Sold Card itm_rbFbbMS for 2 gold.
+[23:06:11.389] [NetworkManager] [HttpGameClient] Command completed: type=SelectItemCommand, requestId=22, status=200 OK, durationMs=48, result=success, endpoint=/commands
+[23:06:11.389] [BoardManager] Card Purchased: InstanceId: itm_FUohRRI - TemplateId8ff7ebb6-a783-403a-ae29-7e89d0c90040 - Target:PlayerStorageSocket_0 - SectionStorage
+[23:06:13.579] [NetworkManager] [HttpGameClient] Command completed: type=ExitCurrentStateCommand, requestId=23, status=200 OK, durationMs=766, result=success, endpoint=/commands
+[23:06:13.579] [AppState] State changed from [EncounterState] to [ChoiceState]
+[23:06:30.567] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=26, status=200 OK, durationMs=63, result=success, endpoint=/commands
+[23:06:30.568] [AppState] State changed from [ChoiceState] to [ChoiceState]
+[23:06:30.568] [BoardManager] Card Purchased: InstanceId: enc_aCJjR2M - TemplateIdfe756e73-bedb-4700-901f-07ef13b3c512 - Target:OpponentSocket_5 - SectionOpponent
+[23:06:33.594] [NetworkManager] [HttpGameClient] Command completed: type=SelectEncounterCommand, requestId=27, status=200 OK, durationMs=1384, result=success, endpoint=/commands
+[23:06:33.594] [GameSimHandler] GameSim cards: id=SUZ, dealt=0, spawned=22, disposed=0
+[23:06:33.702] [AppState] State changed from [ChoiceState] to [PVPCombatState]
+[23:06:33.751] [BoardManager] Card Purchased: InstanceId: pvp_hyZgxX7 - TemplateIdb79845a7-f806-4e7a-9011-d98ebd22a323 - Target:OpponentSocket_5 - SectionOpponent
+[23:06:45.751] [CombatSimHandler] Combat prepared: frames=224, effectsMs=2
+[23:06:56.955] [CombatSimHandler] Combat simulation completed: durationMs=11207
+[23:07:03.047] [GameMessageHandler] Handled: type=NetMessageCombatSim, id=PRk, durationMs=29345, result=success
+[23:07:03.074] [AppState] State changed from [PVPCombatState] to [ReplayState]
+[23:07:05.915] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/Bootstrap/post-run | GET
+[23:07:06.031] [AppState] State changed from [ReplayState] to [EndRunDefeatState]
+[23:07:06.037] [GameMessageHandler] Handled: type=NetMessageGameSim, id=gxm, durationMs=1460, result=success
+[23:07:06.068] [HttpDataProvider] Requesting: https://enter.playthebazaar.com/api/PlayerRanks/me | GET
+[23:07:06.532] [HttpDataProvider] Received: Bootstrap/post-run | 613 ms
+[23:07:06.535] [HttpDataProvider] Received: PlayerRanks/me | 464 ms
+[23:07:06.931] [HttpDataProvider] Received: PlayerProfiles/me/career | 1015 ms
+[23:07:06.942] [ProfileCache] Username: TheWestred - AccountId: 84e5a001-6f62-45b3-99c2-caed4bfec519- Tutorial Completed: True
+[23:07:06.943] [RunConfigurationCache] RunConfigurationCache: Changing EHero to Jules
+Changing rank points from 0 to 2
+[23:07:41.866] [EndOfRunScreenController] Out of screens
+[23:07:41.872] [AppState] Clean up completed

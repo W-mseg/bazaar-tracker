@@ -1,0 +1,9 @@
+pillow
+pytesseract
+opencv-python
+numpy
+mss
+pywin32; sys_platform == "win32"
+requests
+python-dotenv
+flask
