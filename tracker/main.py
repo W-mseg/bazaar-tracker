@@ -71,6 +71,13 @@ def _handle_combat_started(db: TrackerDb, run_builder: RunBuilder) -> None:
     guaranteed to be on screen -- one screenshot here catches every item
     bought since the last combat, each cropped out of that single frame
     instead of archiving a full screen per item.
+
+    Only called for PVE fights (see run_live()'s dispatch) -- board_rois.py
+    was calibrated against a PVE frame, and a same-run PVP capture on
+    2026-09-03 came out wrong across every item it produced (still using
+    the PVE coordinates on what turned out to be a differently laid out
+    screen). PVE fights are frequent enough that a newly-bought item just
+    waits for the next one instead of ever risking a bad crop on PVP.
     """
     if not settings.enable_item_snapshots or not settings.enable_screenshots:
         return
@@ -203,7 +210,7 @@ def run_live() -> None:
 
         if ev.type == "RunEnd":
             _handle_run_end(run_builder)
-        elif ev.type == "CombatStarted":
+        elif ev.type == "CombatStarted" and ev.combat_type == "pve":
             _handle_combat_started(db, run_builder)
 
 
