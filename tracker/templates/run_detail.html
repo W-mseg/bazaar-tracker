@@ -12,9 +12,8 @@
     <div class="card"><div class="value">{{ run['game_mode'] or '—' }}</div><div class="label">Mode</div></div>
     <div class="card">
       <div class="value">
-        {% if run['result'] == 'victory' %}<span class="badge victory">Victoire</span>
-        {% elif run['result'] == 'defeat' %}<span class="badge defeat">Défaite</span>
-        {% else %}<span class="badge unknown">En cours</span>{% endif %}
+        {% set label, cls = run['result']|result_badge(run['wins']) %}
+        <span class="badge {{ cls }}">{{ label }}</span>
       </div>
       <div class="label">Résultat</div>
     </div>

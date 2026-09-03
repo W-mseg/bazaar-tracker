@@ -37,9 +37,8 @@
       <td>{{ run['hero'] or '—' }}</td>
       <td>{{ run['game_mode'] or '—' }}</td>
       <td>
-        {% if run['result'] == 'victory' %}<span class="badge victory">Victoire</span>
-        {% elif run['result'] == 'defeat' %}<span class="badge defeat">Défaite</span>
-        {% else %}<span class="badge unknown">En cours</span>{% endif %}
+        {% set label, cls = run['result']|result_badge(run['wins']) %}
+        <span class="badge {{ cls }}">{{ label }}</span>
       </td>
       <td>{{ '%+d'|format(run['rank_delta']) if run['rank_delta'] else '0' }}</td>
       <td>{{ run['wins'] if run['wins'] is not none else '—' }}</td>

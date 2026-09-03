@@ -44,11 +44,32 @@ def _short_guid(value: str | None) -> str:
     return value[:8]
 
 
+# The game only logs a generic EndRunVictoryState / EndRunDefeatState --
+# never which milestone was reached. Victory actually has three tiers (4/7/10
+# wins banked before the run ends); a defeat is by definition under 4. The
+# tier is only knowable from the OCR'd wins count, so this is a display-time
+# label derived from (result, wins), not something stored as-is.
+def _result_badge(result: str | None, wins: int | None) -> tuple[str, str]:
+    if result == "victory":
+        if wins is not None:
+            if wins >= 10:
+                return "Victoire 10", "victory"
+            if wins >= 7:
+                return "Victoire 7", "victory"
+            if wins >= 4:
+                return "Victoire 4", "victory"
+        return "Victoire", "victory"
+    if result == "defeat":
+        return "Défaite", "defeat"
+    return "En cours", "unknown"
+
+
 def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str | None = None) -> Flask:
     app = Flask(__name__)
     app.jinja_env.filters["fmt_ts"] = _fmt_ts
     app.jinja_env.filters["fmt_duration"] = _fmt_duration
     app.jinja_env.filters["short_guid"] = _short_guid
+    app.jinja_env.filters["result_badge"] = _result_badge
 
     @app.route("/")
     def index():
