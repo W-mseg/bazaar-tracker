@@ -17,7 +17,7 @@ from .tailer import follow_file_lines, replay_file_lines
 # `--replay` should run with nothing but the standard library installed.
 
 
-def _handle_run_end(db: TrackerDb, run_builder: RunBuilder) -> None:
+def _handle_run_end(run_builder: RunBuilder) -> None:
     """
     Runs after a RunEnd event: capture the final board screenshot and OCR it
     into run_metrics. Best-effort -- a run still gets synced without metrics
@@ -38,7 +38,15 @@ def _handle_run_end(db: TrackerDb, run_builder: RunBuilder) -> None:
             return
         try:
             metrics = extract_run_metrics(path, ROIS)
-            db.save_run_metrics(run_id, metrics)
+            # sqlite3 connections can't cross threads -- this runs on its
+            # own thread, so it needs its own connection rather than reusing
+            # the one the main thread's TrackerDb opened (that raised
+            # ProgrammingError on every call, silently swallowed below).
+            worker_db = TrackerDb(settings.db_path)
+            try:
+                worker_db.save_run_metrics(run_id, metrics)
+            finally:
+                worker_db.close()
             print(f"[OCR] run {run_id} metrics: {metrics}")
         except Exception as e:
             print(f"[OCR] failed for run {run_id}: {e!r}")
@@ -46,8 +54,13 @@ def _handle_run_end(db: TrackerDb, run_builder: RunBuilder) -> None:
     threading.Thread(target=_worker, daemon=True).start()
 
 
-def _sync_loop(db: TrackerDb) -> None:
+def _sync_loop(db_path: str) -> None:
     from .sync import sync_pending_runs
+
+    # Own connection for the same reason as the OCR worker above -- this
+    # runs on a background thread and the main thread's TrackerDb.conn
+    # can't be touched from here.
+    db = TrackerDb(db_path)
 
     while True:
         time.sleep(settings.sync_interval_seconds)
@@ -92,7 +105,7 @@ def run_live() -> None:
     parser = LogParser()
     run_builder = RunBuilder(db)
 
-    threading.Thread(target=_sync_loop, args=(db,), daemon=True).start()
+    threading.Thread(target=_sync_loop, args=(settings.db_path,), daemon=True).start()
 
     if settings.enable_web:
         from .web import run_web
@@ -119,7 +132,7 @@ def run_live() -> None:
         run_builder.handle(ev)
 
         if ev.type == "RunEnd":
-            _handle_run_end(db, run_builder)
+            _handle_run_end(run_builder)
 
 
 def run_replay(path: str, db_path: str) -> None:
