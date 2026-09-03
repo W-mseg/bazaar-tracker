@@ -142,8 +142,13 @@ def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str 
         conn = _get_db(db_path)
         try:
             if request.method == "POST":
-                url_val = request.form.get("supabase_url", "").strip()
-                key_val = request.form.get("supabase_key", "").strip()
+                # Neither value can legitimately contain whitespace (it's a
+                # URL and a JWT), but pasting a long key through a chat app
+                # can silently insert a line break or stray space in the
+                # middle of it -- strip all whitespace, not just the ends,
+                # so that doesn't turn into a mystifying 401 from Supabase.
+                url_val = "".join(request.form.get("supabase_url", "").split())
+                key_val = "".join(request.form.get("supabase_key", "").split())
                 conn.execute(
                     "INSERT INTO settings (key, value) VALUES ('supabase_url', ?) "
                     "ON CONFLICT(key) DO UPDATE SET value = excluded.value",

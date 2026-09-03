@@ -10,7 +10,15 @@
     <a href="{{ url_for('settings_view') }}" class="btn-link">Renseigner l'URL et la clé Supabase &rarr;</a>
   </div>
   {% elif error %}
-  <div class="notice error">Impossible de contacter Supabase : {{ error }}</div>
+  <div class="notice error">
+    Impossible de contacter Supabase : {{ error }}
+    {% if '401' in error %}
+    <br><br>
+    Une erreur 401 vient presque toujours d'une clé mal collée (espace ou retour à
+    la ligne glissé dedans, souvent en copiant depuis Discord ou un chat).
+    <a href="{{ url_for('settings_view') }}" class="btn-link">Revérifier l'URL et la clé &rarr;</a>
+    {% endif %}
+  </div>
   {% else %}
 
   <h2>Classement</h2>
