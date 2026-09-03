@@ -4,17 +4,20 @@
 # screenshot.crop_item_icon() infers the actual span from which other
 # sockets are simultaneously occupied.
 #
-# This exact row is reused by the game in several contexts (confirmed
-# against a real 1920x1057 capture, 2026-09-03): it's the player's own board
-# during a fight, the shop/vendor stock display outside of one, and --
-# except during combat, where it instead shows the *opponent's* board --
-# also the stash. Only combat is unambiguous (nothing else can be drawn
-# over it), which is why capture is triggered off CombatStarted.
+# During combat the screen shows BOTH boards stacked vertically: the
+# opponent's row up top (right under their own health bar) and the
+# player's own row lower down (right above their own health bar/portrait).
+# This is the *lower* row -- confirmed against three real 1920x1057 combat
+# captures on 2026-09-03, cross-checked by hero portrait (the player's own
+# hero, "Jules" in every run so far, is always the bottom portrait). An
+# earlier calibration used the *upper* row by mistake, captured off a
+# vendor-encounter screenshot rather than an actual fight -- that row
+# belongs to the opponent, not the player.
 BOARD_ROIS = {
     "1920x1057": {
         "row_left": 400,
-        "row_top": 300,
-        "row_bottom": 528,
+        "row_top": 525,
+        "row_bottom": 755,
         "cell_width": 112,
         "socket_count": 10,
     },

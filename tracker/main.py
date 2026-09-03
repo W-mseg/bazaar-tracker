@@ -112,16 +112,10 @@ def _handle_combat_started(db: TrackerDb, run_builder: RunBuilder) -> None:
                 print(f"[ItemCatalog] captured {row['template_id']} ({row['socket_target']})")
         finally:
             worker_db.close()
-            # TEMPORARY: the board_rois.py calibration turned out to be
-            # wrong (it was measured off a vendor-encounter screenshot, not
-            # a real combat frame -- see the 2026-09-03 session notes), so
-            # the raw frame is being kept around for now to recalibrate
-            # against. Re-enable this cleanup once board_rois.py is fixed
-            # and confirmed against real combat captures.
-            # try:
-            #     os.remove(board_path)
-            # except OSError:
-            #     pass
+            try:
+                os.remove(board_path)
+            except OSError:
+                pass
 
     threading.Thread(target=_worker, daemon=True).start()
 

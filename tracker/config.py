@@ -54,10 +54,12 @@ class Settings:
     # covered by a shop/vendor/reward popup -- capture one full frame and
     # crop out every never-seen-before template_id sitting in an actual
     # inventory socket (PlayerSocket_N -- not PlayerStorageSocket_N/stash),
-    # per the calibration in board_rois.py. The delay gives the combat
-    # transition animation time to finish before the frame is grabbed.
+    # per the calibration in board_rois.py. 2s wasn't enough: a real capture
+    # at that delay caught the player's items still showing their face-down
+    # card back, mid reveal-animation -- 4.5s clears that reliably without
+    # eating into the fight itself (see 2026-09-03 session captures).
     enable_item_snapshots: bool = True
-    board_capture_delay_seconds: float = 2.0
+    board_capture_delay_seconds: float = 4.5
 
     tesseract_cmd: str | None = None
 
