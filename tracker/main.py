@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import argparse
+import os
 import threading
 import time
+from typing import Optional
 
 from .config import settings
 from .db import TrackerDb
-from .events import Event
 from .parser import LogParser
 from .state import RunBuilder
 from .tailer import follow_file_lines, replay_file_lines
@@ -54,42 +55,67 @@ def _handle_run_end(run_builder: RunBuilder) -> None:
     threading.Thread(target=_worker, daemon=True).start()
 
 
-def _handle_item_purchased(db: TrackerDb, run_builder: RunBuilder, ev: Event) -> None:
+def _socket_index(socket_target: Optional[str]) -> Optional[int]:
+    if not socket_target:
+        return None
+    try:
+        return int(socket_target.rsplit("_", 1)[1])
+    except (ValueError, IndexError):
+        return None
+
+
+def _handle_combat_started(db: TrackerDb, run_builder: RunBuilder) -> None:
     """
-    Building a local item image catalog: the first time a never-seen
-    template_id lands in an actual inventory socket (not the stash), grab a
-    full screenshot as evidence. No per-item cropping yet -- that needs real
-    screenshots to calibrate against, this just archives them.
+    Building the item image catalog: a shop/vendor/reward screen can cover
+    the board at any other time, so combat start is the one moment it's
+    guaranteed to be on screen -- one screenshot here catches every item
+    bought since the last combat, each cropped out of that single frame
+    instead of archiving a full screen per item.
     """
     if not settings.enable_item_snapshots or not settings.enable_screenshots:
         return
-    if not ev.socket_target or not ev.socket_target.startswith("PlayerSocket_"):
-        return
-    if not ev.template_id or db.has_item_snapshot(ev.template_id):
+    run_id = run_builder._run_id
+    if run_id is None:
         return
 
-    template_id = ev.template_id
-    socket_target = ev.socket_target
-    run_id = run_builder._run_id
-    day, hour = run_builder._day, run_builder._hour
+    equipped = db.equipped_items(run_id)
+    pending = [row for row in equipped if not db.has_item_snapshot(row["template_id"])]
+    if not pending:
+        return
+
+    occupied = [i for i in (_socket_index(r["socket_target"]) for r in equipped) if i is not None]
     contributed_by = run_builder._pending_username
 
     def _worker() -> None:
-        from .screenshot import capture_item_snapshot
+        from .screenshot import capture_board_snapshot, crop_item_icon
 
-        time.sleep(settings.item_snapshot_delay_seconds)
-        path = capture_item_snapshot(settings.item_snapshot_dir, template_id)
-        if not path:
+        time.sleep(settings.board_capture_delay_seconds)
+        board_path = capture_board_snapshot(settings.item_snapshot_dir)
+        if not board_path:
             return
+
         worker_db = TrackerDb(settings.db_path)
         try:
-            worker_db.add_item_snapshot(
-                template_id, path, socket_target, run_id, day, hour, time.time(),
-                contributed_by=contributed_by,
-            )
+            for row in pending:
+                idx = _socket_index(row["socket_target"])
+                if idx is None:
+                    continue
+                out_path = os.path.join(settings.item_snapshot_dir, f"{row['template_id']}.png")
+                cropped = crop_item_icon(board_path, idx, occupied, out_path)
+                if not cropped:
+                    continue
+                worker_db.add_item_snapshot(
+                    row["template_id"], cropped, row["socket_target"], run_id,
+                    row["purchased_day"], row["purchased_hour"], time.time(),
+                    contributed_by=contributed_by,
+                )
+                print(f"[ItemCatalog] captured {row['template_id']} ({row['socket_target']})")
         finally:
             worker_db.close()
-        print(f"[ItemCatalog] captured {template_id} ({socket_target})")
+            try:
+                os.remove(board_path)
+            except OSError:
+                pass
 
     threading.Thread(target=_worker, daemon=True).start()
 
@@ -177,8 +203,8 @@ def run_live() -> None:
 
         if ev.type == "RunEnd":
             _handle_run_end(run_builder)
-        elif ev.type == "ItemPurchased":
-            _handle_item_purchased(db, run_builder, ev)
+        elif ev.type == "CombatStarted":
+            _handle_combat_started(db, run_builder)
 
 
 def run_replay(path: str, db_path: str) -> None:

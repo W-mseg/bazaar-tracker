@@ -95,5 +95,75 @@ def capture_final_board(out_dir: str, monitor_index: int = 1) -> Optional[str]:
     return _capture(out_dir, f"run_end_{int(time.time())}.png", monitor_index)
 
 
-def capture_item_snapshot(out_dir: str, template_id: str, monitor_index: int = 1) -> Optional[str]:
-    return _capture(out_dir, f"{template_id}_{int(time.time())}.png", monitor_index)
+def capture_board_snapshot(out_dir: str, monitor_index: int = 1) -> Optional[str]:
+    """
+    One full-frame capture taken at combat start, when the board is
+    guaranteed visible (see board_rois.py). Prefixed with an underscore so
+    it reads clearly as a transient working file -- item_crop callers
+    delete it once every pending item has been cropped out of it.
+    """
+    return _capture(out_dir, f"_board_{int(time.time() * 1000)}.png", monitor_index)
+
+
+def _find_matching_board_resolution(width: int, height: int, tolerance: int = 10) -> Optional[str]:
+    from .board_rois import BOARD_ROIS
+
+    exact_key = f"{width}x{height}"
+    if exact_key in BOARD_ROIS:
+        return exact_key
+
+    for key in BOARD_ROIS:
+        try:
+            rw, rh = map(int, key.split("x"))
+        except ValueError:
+            continue
+        if abs(rw - width) <= tolerance and abs(rh - height) <= tolerance:
+            return key
+
+    return None
+
+
+def crop_item_icon(
+    board_image_path: str,
+    socket_index: int,
+    occupied_socket_indices: list[int],
+    out_path: str,
+) -> Optional[str]:
+    """
+    Crops one item's icon out of a full board screenshot.
+
+    socket_index is where the item starts (PlayerSocket_N). The log never
+    reports an item's size (small/medium/large -- 1/2/3 sockets wide), so
+    the crop width is inferred from occupied_socket_indices: the gap to the
+    next occupied socket, capped at 3 (the game's largest item size) so a
+    stale gap left by a sold item doesn't balloon the crop.
+
+    Returns None if there's no board calibration for this resolution yet
+    (see board_rois.py) -- the caller should just skip the item in that case
+    rather than fail the whole capture.
+    """
+    from PIL import Image
+
+    from .board_rois import BOARD_ROIS
+
+    im = Image.open(board_image_path)
+    w, h = im.size
+    key = _find_matching_board_resolution(w, h)
+    if key is None:
+        return None
+
+    roi = BOARD_ROIS[key]
+    if not (0 <= socket_index < roi["socket_count"]):
+        return None
+
+    higher = sorted(i for i in occupied_socket_indices if i > socket_index)
+    span = (higher[0] - socket_index) if higher else (roi["socket_count"] - socket_index)
+    span = max(1, min(span, 3))
+
+    x1 = roi["row_left"] + socket_index * roi["cell_width"]
+    x2 = min(x1 + span * roi["cell_width"], w)
+    y1, y2 = roi["row_top"], roi["row_bottom"]
+
+    crop = im.crop((x1, y1, x2, y2))
+    crop.save(out_path)
+    return out_path

@@ -49,14 +49,15 @@ class Settings:
     screenshot_delay_seconds: float = 3.0
     screenshot_cooldown_seconds: float = 10.0
 
-    # Building a local item image catalog: capture a full screenshot the
-    # first time a never-seen-before template_id lands in an actual
-    # inventory socket (PlayerSocket_N -- not PlayerStorageSocket_N/stash).
-    # No cropping yet, that needs real screenshots to calibrate against
-    # first -- this just archives the evidence, tagged with the item's
-    # template_id/socket/day/hour, so it can be reviewed and cropped later.
+    # Building a local (and shared, see sync.py) item image catalog: on
+    # combat start -- the one moment the board is guaranteed on screen, not
+    # covered by a shop/vendor/reward popup -- capture one full frame and
+    # crop out every never-seen-before template_id sitting in an actual
+    # inventory socket (PlayerSocket_N -- not PlayerStorageSocket_N/stash),
+    # per the calibration in board_rois.py. The delay gives the combat
+    # transition animation time to finish before the frame is grabbed.
     enable_item_snapshots: bool = True
-    item_snapshot_delay_seconds: float = 1.5
+    board_capture_delay_seconds: float = 2.0
 
     tesseract_cmd: str | None = None
 

@@ -3,9 +3,8 @@
 {% block body %}
   <h1>Catalogue d'items</h1>
   <div class="subtitle">
-    {{ items|length }} item(s) unique(s) — capture automatique la première fois qu'un item
-    jamais vu atterrit dans l'inventaire (pas le stash). Pas encore recadré précisément par
-    item, ça viendra une fois qu'il y en a assez pour calibrer dessus.
+    {{ items|length }} item(s) unique(s) — capturé et recadré automatiquement au début d'un
+    combat pour chaque item jamais vu posé sur le tapis (pas le stash) depuis le dernier combat.
   </div>
 
   {% if not shared_configured %}
@@ -40,9 +39,9 @@
   </div>
   {% else %}
   <div class="empty">
-    Aucun item capturé pour l'instant. Ça se remplit automatiquement en jouant — dès qu'un
-    item jamais vu atterrit dans un socket d'inventaire, une capture est prise quelques
-    secondes après.
+    Aucun item capturé pour l'instant. Ça se remplit automatiquement en jouant — au début
+    d'un combat, tout item jamais vu posé sur le tapis depuis le dernier combat est capturé
+    et recadré.
   </div>
   {% endif %}
 {% endblock %}

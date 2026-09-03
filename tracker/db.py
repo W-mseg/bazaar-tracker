@@ -197,6 +197,24 @@ class TrackerDb:
 
     # -- item catalog --------------------------------------------------------------
 
+    def equipped_items(self, run_id: int) -> list[sqlite3.Row]:
+        """
+        Items purchased into an actual inventory socket (not the stash) and
+        not yet sold, as of right now -- the board's current contents, used
+        both to know which template_ids still need a catalog capture and to
+        infer each item's on-screen width (see screenshot.crop_item_icon).
+        """
+        cur = self.conn.cursor()
+        cur.execute(
+            """
+            SELECT template_id, socket_target, purchased_day, purchased_hour
+            FROM run_items
+            WHERE run_id = ? AND sold_at IS NULL AND socket_target LIKE 'PlayerSocket\\_%' ESCAPE '\\'
+            """,
+            (run_id,),
+        )
+        return cur.fetchall()
+
     def has_item_snapshot(self, template_id: str) -> bool:
         cur = self.conn.cursor()
         cur.execute("SELECT 1 FROM item_catalog WHERE template_id = ?", (template_id,))
