@@ -128,6 +128,13 @@ class LogParser:
                 self._allow_hero_detection = True
                 return Event(type="RunEnd", raw=raw, result=self._RUN_END_STATES[state])
 
+            if state == "ChoiceState":
+                # The shop/choice screen. Each entry into it is a new "hour"
+                # (per the in-game Day/Hour structure) -- except the very
+                # first one of a run, and the first one after a PVP fight,
+                # both of which RunBuilder treats specially.
+                return Event(type="ShopEntered", raw=raw)
+
             return None
 
         m = self._COMBAT_PREPARED_RE.search(line)

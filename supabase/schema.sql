@@ -15,10 +15,16 @@ create table if not exists runs (
   rank_delta integer not null default 0,
   created_at timestamptz not null default now(),
   player_username text,
-  player_account_id text
+  player_account_id text,
+  final_day integer,
+  final_hour integer
 );
 create index if not exists idx_runs_player on runs(player_account_id);
 
+-- Day/Hour are the game's own progression units (not wall-clock time):
+-- an Hour ends when a shop choice leads back to the next choice screen, a
+-- Day ends with a PVP fight. Derived from AppState transitions in the log,
+-- not something the game logs directly -- see tracker/state.py.
 create table if not exists run_items (
   id bigint generated always as identity primary key,
   run_uuid uuid not null references runs(run_uuid) on delete cascade,
@@ -27,7 +33,11 @@ create table if not exists run_items (
   socket_target text,
   purchased_at double precision not null,
   sold_at double precision,
-  sell_price integer
+  sell_price integer,
+  purchased_day integer,
+  purchased_hour integer,
+  sold_day integer,
+  sold_hour integer
 );
 create index if not exists idx_run_items_run on run_items(run_uuid);
 create index if not exists idx_run_items_template on run_items(template_id);
@@ -39,14 +49,18 @@ create table if not exists run_combats (
   started_at double precision not null,
   ended_at double precision,
   duration_ms integer,
-  frames integer
+  frames integer,
+  day integer,
+  hour integer
 );
 create index if not exists idx_run_combats_run on run_combats(run_uuid);
 
 create table if not exists run_rerolls (
   id bigint generated always as identity primary key,
   run_uuid uuid not null references runs(run_uuid) on delete cascade,
-  occurred_at double precision not null
+  occurred_at double precision not null,
+  day integer,
+  hour integer
 );
 
 create table if not exists run_skills (
@@ -54,7 +68,9 @@ create table if not exists run_skills (
   run_uuid uuid not null references runs(run_uuid) on delete cascade,
   skill_id text not null,
   socket text,
-  selected_at double precision not null
+  selected_at double precision not null,
+  day integer,
+  hour integer
 );
 
 create table if not exists run_metrics (

@@ -51,12 +51,16 @@ class TrackerDb:
                 rank_delta INTEGER NOT NULL DEFAULT 0,
                 synced_at REAL,
                 player_username TEXT,
-                player_account_id TEXT
+                player_account_id TEXT,
+                current_day INTEGER NOT NULL DEFAULT 1,
+                current_hour INTEGER NOT NULL DEFAULT 1
             )
             """
         )
         self._add_column_if_missing("runs", "player_username", "TEXT")
         self._add_column_if_missing("runs", "player_account_id", "TEXT")
+        self._add_column_if_missing("runs", "current_day", "INTEGER NOT NULL DEFAULT 1")
+        self._add_column_if_missing("runs", "current_hour", "INTEGER NOT NULL DEFAULT 1")
 
         cur.execute(
             """
@@ -69,12 +73,20 @@ class TrackerDb:
                 purchased_at REAL NOT NULL,
                 sold_at REAL,
                 sell_price INTEGER,
+                purchased_day INTEGER,
+                purchased_hour INTEGER,
+                sold_day INTEGER,
+                sold_hour INTEGER,
                 FOREIGN KEY (run_id) REFERENCES runs(run_id)
             )
             """
         )
         cur.execute("CREATE INDEX IF NOT EXISTS idx_run_items_run ON run_items(run_id)")
         cur.execute("CREATE INDEX IF NOT EXISTS idx_run_items_template ON run_items(template_id)")
+        self._add_column_if_missing("run_items", "purchased_day", "INTEGER")
+        self._add_column_if_missing("run_items", "purchased_hour", "INTEGER")
+        self._add_column_if_missing("run_items", "sold_day", "INTEGER")
+        self._add_column_if_missing("run_items", "sold_hour", "INTEGER")
 
         cur.execute(
             """
@@ -86,11 +98,15 @@ class TrackerDb:
                 ended_at REAL,
                 duration_ms INTEGER,
                 frames INTEGER,
+                day INTEGER,
+                hour INTEGER,
                 FOREIGN KEY (run_id) REFERENCES runs(run_id)
             )
             """
         )
         cur.execute("CREATE INDEX IF NOT EXISTS idx_run_combats_run ON run_combats(run_id)")
+        self._add_column_if_missing("run_combats", "day", "INTEGER")
+        self._add_column_if_missing("run_combats", "hour", "INTEGER")
 
         cur.execute(
             """
@@ -98,11 +114,15 @@ class TrackerDb:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 run_id INTEGER NOT NULL,
                 occurred_at REAL NOT NULL,
+                day INTEGER,
+                hour INTEGER,
                 FOREIGN KEY (run_id) REFERENCES runs(run_id)
             )
             """
         )
         cur.execute("CREATE INDEX IF NOT EXISTS idx_run_rerolls_run ON run_rerolls(run_id)")
+        self._add_column_if_missing("run_rerolls", "day", "INTEGER")
+        self._add_column_if_missing("run_rerolls", "hour", "INTEGER")
 
         cur.execute(
             """
@@ -112,11 +132,15 @@ class TrackerDb:
                 skill_id TEXT NOT NULL,
                 socket TEXT,
                 selected_at REAL NOT NULL,
+                day INTEGER,
+                hour INTEGER,
                 FOREIGN KEY (run_id) REFERENCES runs(run_id)
             )
             """
         )
         cur.execute("CREATE INDEX IF NOT EXISTS idx_run_skills_run ON run_skills(run_id)")
+        self._add_column_if_missing("run_skills", "day", "INTEGER")
+        self._add_column_if_missing("run_skills", "hour", "INTEGER")
 
         cur.execute(
             """
@@ -205,6 +229,12 @@ class TrackerDb:
         )
         self.conn.commit()
 
+    def set_day_hour(self, run_id: int, day: int, hour: int) -> None:
+        self.conn.execute(
+            "UPDATE runs SET current_day = ?, current_hour = ? WHERE run_id = ?", (day, hour, run_id)
+        )
+        self.conn.commit()
+
     def finalize_run(self, run_id: int, ended_at: float, result: str) -> None:
         self.conn.execute(
             "UPDATE runs SET ended_at = ?, result = ? WHERE run_id = ?",
@@ -215,20 +245,35 @@ class TrackerDb:
     # -- items --------------------------------------------------------------
 
     def add_item_purchase(
-        self, run_id: int, instance_id: str, template_id: str, socket_target: Optional[str], ts: float
+        self,
+        run_id: int,
+        instance_id: str,
+        template_id: str,
+        socket_target: Optional[str],
+        ts: float,
+        day: Optional[int] = None,
+        hour: Optional[int] = None,
     ) -> int:
         cur = self.conn.cursor()
         cur.execute(
             """
-            INSERT INTO run_items (run_id, instance_id, template_id, socket_target, purchased_at)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO run_items (run_id, instance_id, template_id, socket_target, purchased_at, purchased_day, purchased_hour)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             """,
-            (run_id, instance_id, template_id, socket_target, ts),
+            (run_id, instance_id, template_id, socket_target, ts, day, hour),
         )
         self.conn.commit()
         return int(cur.lastrowid)
 
-    def add_item_sale(self, run_id: int, instance_id: str, sell_price: int, ts: float) -> bool:
+    def add_item_sale(
+        self,
+        run_id: int,
+        instance_id: str,
+        sell_price: int,
+        ts: float,
+        day: Optional[int] = None,
+        hour: Optional[int] = None,
+    ) -> bool:
         """Marks the most recent un-sold purchase of this instance in this run as sold."""
         cur = self.conn.cursor()
         cur.execute(
@@ -245,8 +290,8 @@ class TrackerDb:
             return False
 
         cur.execute(
-            "UPDATE run_items SET sold_at = ?, sell_price = ? WHERE id = ?",
-            (ts, sell_price, row["id"]),
+            "UPDATE run_items SET sold_at = ?, sell_price = ?, sold_day = ?, sold_hour = ? WHERE id = ?",
+            (ts, sell_price, day, hour, row["id"]),
         )
         self.conn.commit()
         return True
@@ -261,28 +306,41 @@ class TrackerDb:
         ended_at: Optional[float],
         duration_ms: Optional[int],
         frames: Optional[int],
+        day: Optional[int] = None,
+        hour: Optional[int] = None,
     ) -> int:
         cur = self.conn.cursor()
         cur.execute(
             """
-            INSERT INTO run_combats (run_id, combat_type, started_at, ended_at, duration_ms, frames)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO run_combats (run_id, combat_type, started_at, ended_at, duration_ms, frames, day, hour)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (run_id, combat_type, started_at, ended_at, duration_ms, frames),
+            (run_id, combat_type, started_at, ended_at, duration_ms, frames, day, hour),
         )
         self.conn.commit()
         return int(cur.lastrowid)
 
     # -- rerolls / skills --------------------------------------------------------------
 
-    def add_reroll(self, run_id: int, ts: float) -> None:
-        self.conn.execute("INSERT INTO run_rerolls (run_id, occurred_at) VALUES (?, ?)", (run_id, ts))
+    def add_reroll(self, run_id: int, ts: float, day: Optional[int] = None, hour: Optional[int] = None) -> None:
+        self.conn.execute(
+            "INSERT INTO run_rerolls (run_id, occurred_at, day, hour) VALUES (?, ?, ?, ?)",
+            (run_id, ts, day, hour),
+        )
         self.conn.commit()
 
-    def add_skill(self, run_id: int, skill_id: str, socket: Optional[str], ts: float) -> None:
+    def add_skill(
+        self,
+        run_id: int,
+        skill_id: str,
+        socket: Optional[str],
+        ts: float,
+        day: Optional[int] = None,
+        hour: Optional[int] = None,
+    ) -> None:
         self.conn.execute(
-            "INSERT INTO run_skills (run_id, skill_id, socket, selected_at) VALUES (?, ?, ?, ?)",
-            (run_id, skill_id, socket, ts),
+            "INSERT INTO run_skills (run_id, skill_id, socket, selected_at, day, hour) VALUES (?, ?, ?, ?, ?, ?)",
+            (run_id, skill_id, socket, ts, day, hour),
         )
         self.conn.commit()
 

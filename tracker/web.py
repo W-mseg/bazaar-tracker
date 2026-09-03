@@ -44,6 +44,14 @@ def _short_guid(value: str | None) -> str:
     return value[:8]
 
 
+def _day_hour(day: object, hour: object) -> str:
+    # Guards against more than plain None: a missing column on an
+    # unmigrated table resolves through Jinja as Undefined, not None.
+    if not isinstance(day, int) or not isinstance(hour, int):
+        return "—"
+    return f"Jour {day} · Heure {hour}"
+
+
 # The game only logs a generic EndRunVictoryState / EndRunDefeatState --
 # never which milestone was reached -- and the milestone banked doesn't
 # necessarily match victory/defeat anyway: a player can bank a 7-win reward
@@ -76,6 +84,7 @@ def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str 
     app.jinja_env.filters["fmt_duration"] = _fmt_duration
     app.jinja_env.filters["short_guid"] = _short_guid
     app.jinja_env.filters["result_badge"] = _result_badge
+    app.jinja_env.filters["day_hour"] = _day_hour
 
     @app.route("/")
     def index():

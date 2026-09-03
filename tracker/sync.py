@@ -70,6 +70,8 @@ def _run_payload(full: dict[str, Any]) -> dict[str, Any]:
         "rank_delta": run["rank_delta"],
         "player_username": run["player_username"],
         "player_account_id": run["player_account_id"],
+        "final_day": run.get("current_day"),
+        "final_hour": run.get("current_hour"),
     }
 
 
@@ -88,6 +90,10 @@ def push_run(url: str, key: str, full: dict[str, Any]) -> bool:
             "purchased_at": it["purchased_at"],
             "sold_at": it["sold_at"],
             "sell_price": it["sell_price"],
+            "purchased_day": it.get("purchased_day"),
+            "purchased_hour": it.get("purchased_hour"),
+            "sold_day": it.get("sold_day"),
+            "sold_hour": it.get("sold_hour"),
         }
         for it in full["items"]
     ]
@@ -102,18 +108,26 @@ def push_run(url: str, key: str, full: dict[str, Any]) -> bool:
             "ended_at": c["ended_at"],
             "duration_ms": c["duration_ms"],
             "frames": c["frames"],
+            "day": c.get("day"),
+            "hour": c.get("hour"),
         }
         for c in full["combats"]
     ]
     if not _post(url, key, "run_combats", combats):
         return False
 
-    rerolls = [{"run_uuid": run_uuid, "occurred_at": r["occurred_at"]} for r in full["rerolls"]]
+    rerolls = [
+        {"run_uuid": run_uuid, "occurred_at": r["occurred_at"], "day": r.get("day"), "hour": r.get("hour")}
+        for r in full["rerolls"]
+    ]
     if not _post(url, key, "run_rerolls", rerolls):
         return False
 
     skills = [
-        {"run_uuid": run_uuid, "skill_id": s["skill_id"], "socket": s["socket"], "selected_at": s["selected_at"]}
+        {
+            "run_uuid": run_uuid, "skill_id": s["skill_id"], "socket": s["socket"],
+            "selected_at": s["selected_at"], "day": s.get("day"), "hour": s.get("hour"),
+        }
         for s in full["skills"]
     ]
     if not _post(url, key, "run_skills", skills):

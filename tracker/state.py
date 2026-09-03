@@ -41,6 +41,16 @@ class RunBuilder:
         self._pending_username: Optional[str] = None
         self._pending_account_id: Optional[str] = None
 
+        # In-game Day/Hour, tracked from AppState transitions rather than
+        # wall-clock time (that's what actually matters to a player looking
+        # back at "what did my board look like"). An Hour ends when a choice
+        # is made that leads back to the shop screen; a Day ends with a PVP
+        # fight, after which the next ChoiceState starts a new Day at Hour 1.
+        self._day = 1
+        self._hour = 1
+        self._day_ending_pending = False
+        self._pending_first_choice = True  # the run's very first ChoiceState doesn't advance the hour
+
         # If the process restarts mid-run (crash, update, sleep/wake), the
         # tailer resumes from wherever the log currently is and never sees
         # that run's original RunStart line again. Without this, the next
@@ -53,6 +63,9 @@ class RunBuilder:
             self._pending_mode = open_run["game_mode"]
             self._pending_username = open_run["player_username"]
             self._pending_account_id = open_run["player_account_id"]
+            self._day = open_run["current_day"]
+            self._hour = open_run["current_hour"]
+            self._pending_first_choice = False
 
     def handle(self, ev: Event) -> None:
         ts = ev.observed_at if ev.observed_at is not None else time.time()
@@ -66,6 +79,10 @@ class RunBuilder:
                 player_account_id=self._pending_account_id,
             )
             self._pending_combat = None
+            self._day = 1
+            self._hour = 1
+            self._day_ending_pending = False
+            self._pending_first_choice = True
             return
 
         if ev.type == "HeroDetected" and ev.hero:
@@ -94,27 +111,54 @@ class RunBuilder:
         if ev.type == "ItemPurchased":
             if self._run_id is not None:
                 self.db.add_item_purchase(
-                    self._run_id, ev.instance_id, ev.template_id, ev.socket_target, ts
+                    self._run_id, ev.instance_id, ev.template_id, ev.socket_target, ts,
+                    day=self._day, hour=self._hour,
                 )
             return
 
         if ev.type == "ItemSold":
             if self._run_id is not None:
-                self.db.add_item_sale(self._run_id, ev.instance_id, ev.sell_price or 0, ts)
+                self.db.add_item_sale(
+                    self._run_id, ev.instance_id, ev.sell_price or 0, ts,
+                    day=self._day, hour=self._hour,
+                )
             return
 
         if ev.type == "RerollUsed":
             if self._run_id is not None:
-                self.db.add_reroll(self._run_id, ts)
+                self.db.add_reroll(self._run_id, ts, day=self._day, hour=self._hour)
             return
 
         if ev.type == "SkillSelected":
             if self._run_id is not None:
-                self.db.add_skill(self._run_id, ev.skill_id, ev.socket, ts)
+                self.db.add_skill(
+                    self._run_id, ev.skill_id, ev.socket, ts, day=self._day, hour=self._hour
+                )
+            return
+
+        if ev.type == "ShopEntered":
+            if self._pending_first_choice:
+                self._pending_first_choice = False
+            elif self._day_ending_pending:
+                self._day += 1
+                self._hour = 1
+                self._day_ending_pending = False
+            else:
+                self._hour += 1
+            if self._run_id is not None:
+                self.db.set_day_hour(self._run_id, self._day, self._hour)
             return
 
         if ev.type == "CombatStarted":
-            self._pending_combat = {"combat_type": ev.combat_type, "started_at": ts, "frames": None}
+            self._pending_combat = {
+                "combat_type": ev.combat_type,
+                "started_at": ts,
+                "frames": None,
+                "day": self._day,
+                "hour": self._hour,
+            }
+            if ev.combat_type == "pvp":
+                self._day_ending_pending = True
             return
 
         if ev.type == "CombatPrepared":
@@ -131,6 +175,8 @@ class RunBuilder:
                     ts,
                     ev.duration_ms,
                     self._pending_combat.get("frames"),
+                    day=self._pending_combat.get("day"),
+                    hour=self._pending_combat.get("hour"),
                 )
             self._pending_combat = None
             return

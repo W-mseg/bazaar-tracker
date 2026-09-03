@@ -39,8 +39,16 @@
     <tr>
       <td class="mono" title="{{ it['template_id'] }}">{{ it['template_id']|short_guid }}</td>
       <td>{{ it['socket_target'] or '—' }}</td>
-      <td>{{ it['purchased_at']|fmt_ts }}</td>
-      <td>{{ it['sold_at']|fmt_ts if it['sold_at'] else '—' }}</td>
+      <td>
+        {{ it['purchased_day']|day_hour(it['purchased_hour']) }}
+        <div class="sub">{{ it['purchased_at']|fmt_ts }}</div>
+      </td>
+      <td>
+        {% if it['sold_at'] %}
+        {{ it['sold_day']|day_hour(it['sold_hour']) }}
+        <div class="sub">{{ it['sold_at']|fmt_ts }}</div>
+        {% else %}—{% endif %}
+      </td>
       <td>{{ it['sell_price'] if it['sell_price'] is not none else '—' }}</td>
     </tr>
     {% endfor %}
@@ -61,7 +69,10 @@
     {% for c in combats %}
     <tr>
       <td>{{ 'PVP' if c['combat_type'] == 'pvp' else 'PVE' }}</td>
-      <td>{{ c['started_at']|fmt_ts }}</td>
+      <td>
+        {{ c['day']|day_hour(c['hour']) }}
+        <div class="sub">{{ c['started_at']|fmt_ts }}</div>
+      </td>
       <td>{{ (c['duration_ms'] / 1000)|fmt_duration if c['duration_ms'] else '—' }}</td>
       <td>{{ c['frames'] if c['frames'] is not none else '—' }}</td>
     </tr>
@@ -74,9 +85,12 @@
   <h2>Rerolls ({{ rerolls|length }})</h2>
   {% if rerolls %}
   <table>
-    <tr><th>Horodatage</th></tr>
+    <tr><th>Moment</th></tr>
     {% for r in rerolls %}
-    <tr><td>{{ r['occurred_at']|fmt_ts }}</td></tr>
+    <tr><td>
+      {{ r['day']|day_hour(r['hour']) }}
+      <div class="sub">{{ r['occurred_at']|fmt_ts }}</div>
+    </td></tr>
     {% endfor %}
   </table>
   {% else %}
@@ -89,13 +103,16 @@
     <tr>
       <th>Compétence</th>
       <th>Socket</th>
-      <th>Horodatage</th>
+      <th>Moment</th>
     </tr>
     {% for s in skills %}
     <tr>
       <td class="mono">{{ s['skill_id'] }}</td>
       <td>{{ s['socket'] or '—' }}</td>
-      <td>{{ s['selected_at']|fmt_ts }}</td>
+      <td>
+        {{ s['day']|day_hour(s['hour']) }}
+        <div class="sub">{{ s['selected_at']|fmt_ts }}</div>
+      </td>
     </tr>
     {% endfor %}
   </table>

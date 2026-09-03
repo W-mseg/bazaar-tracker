@@ -77,6 +77,8 @@ tr:hover td { background: #20232d; }
 
 .mono { font-family: "Cascadia Code", Consolas, monospace; font-size: 12px; }
 
+.sub { font-size: 11px; color: #6b7080; margin-top: 2px; }
+
 .empty { color: #6b7080; font-style: italic; padding: 20px; }
 
 .back { display: inline-block; margin-bottom: 16px; font-size: 13px; }
