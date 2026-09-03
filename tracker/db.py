@@ -136,6 +136,31 @@ class TrackerDb:
             """
         )
 
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS settings (
+                key TEXT PRIMARY KEY,
+                value TEXT
+            )
+            """
+        )
+
+        self.conn.commit()
+
+    # -- settings --------------------------------------------------------------
+
+    def get_setting(self, key: str) -> Optional[str]:
+        cur = self.conn.cursor()
+        cur.execute("SELECT value FROM settings WHERE key = ?", (key,))
+        row = cur.fetchone()
+        return row["value"] if row else None
+
+    def set_setting(self, key: str, value: str) -> None:
+        self.conn.execute(
+            "INSERT INTO settings (key, value) VALUES (?, ?) "
+            "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+            (key, value),
+        )
         self.conn.commit()
 
     # -- runs --------------------------------------------------------------

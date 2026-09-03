@@ -68,14 +68,25 @@ def run_live() -> None:
         if getattr(sys, "frozen", False):
             # Frozen (PyInstaller) build: cwd isn't reliable depending on how
             # the exe was launched, so look for .env next to the exe itself.
-            load_dotenv(dotenv_path=Path(sys.executable).parent / ".env")
+            env_path = Path(sys.executable).parent / ".env"
         else:
-            load_dotenv()
-    except Exception:
-        pass
+            env_path = Path.cwd() / ".env"
+
+        if env_path.exists():
+            load_dotenv(dotenv_path=env_path)
+            print(f"[Tracker] .env found: {env_path}")
+        else:
+            print(f"[Tracker] no .env at {env_path} -- that's fine, Supabase can also be "
+                  f"configured from the dashboard's Paramètres page")
+    except Exception as e:
+        print(f"[Tracker] .env loading failed: {e!r}")
 
     supabase_url = os.environ.get("SUPABASE_URL")
     supabase_key = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_SERVICE_KEY")
+    if supabase_url and supabase_key:
+        print("[Tracker] Supabase configured from .env")
+    else:
+        print("[Tracker] Supabase not set in .env -- checking saved dashboard settings instead")
 
     db = TrackerDb(settings.db_path)
     parser = LogParser()

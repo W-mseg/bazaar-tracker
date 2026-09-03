@@ -6,9 +6,8 @@
 
   {% if not configured %}
   <div class="notice">
-    Pas encore configuré. Ajoute <span class="mono">SUPABASE_URL</span> et
-    <span class="mono">SUPABASE_KEY</span> (ou <span class="mono">SUPABASE_SERVICE_KEY</span>)
-    dans le fichier <span class="mono">.env</span>, puis relance le tracker.
+    Pas encore configuré.
+    <a href="{{ url_for('settings_view') }}" class="btn-link">Renseigner l'URL et la clé Supabase &rarr;</a>
   </div>
   {% elif error %}
   <div class="notice error">Impossible de contacter Supabase : {{ error }}</div>

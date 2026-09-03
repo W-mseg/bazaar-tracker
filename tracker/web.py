@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 
 import requests
-from flask import Flask, abort, render_template
+from flask import Flask, abort, redirect, render_template, request, url_for
 
 
 def _get_db(db_path: str) -> sqlite3.Connection:
@@ -13,6 +13,13 @@ def _get_db(db_path: str) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
+
+
+def _get_setting(conn: sqlite3.Connection, key: str) -> str | None:
+    cur = conn.cursor()
+    cur.execute("SELECT value FROM settings WHERE key = ?", (key,))
+    row = cur.fetchone()
+    return row["value"] if row else None
 
 
 def _fmt_ts(ts: float | None) -> str:
@@ -117,15 +124,61 @@ def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str 
             "run_detail.html", run=run, items=items, combats=combats, rerolls=rerolls, skills=skills
         )
 
+    def _effective_supabase_config() -> tuple[str | None, str | None]:
+        # .env (passed in at process start) wins if present; otherwise fall
+        # back to whatever was saved from the in-browser settings form. This
+        # keeps the original .env-based setup working unchanged while giving
+        # everyone else a way in that doesn't depend on file placement.
+        if supabase_url and supabase_key:
+            return supabase_url, supabase_key
+        conn = _get_db(db_path)
+        try:
+            return _get_setting(conn, "supabase_url"), _get_setting(conn, "supabase_key")
+        finally:
+            conn.close()
+
+    @app.route("/settings", methods=["GET", "POST"])
+    def settings_view():
+        conn = _get_db(db_path)
+        try:
+            if request.method == "POST":
+                url_val = request.form.get("supabase_url", "").strip()
+                key_val = request.form.get("supabase_key", "").strip()
+                conn.execute(
+                    "INSERT INTO settings (key, value) VALUES ('supabase_url', ?) "
+                    "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+                    (url_val,),
+                )
+                conn.execute(
+                    "INSERT INTO settings (key, value) VALUES ('supabase_key', ?) "
+                    "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+                    (key_val,),
+                )
+                conn.commit()
+                return redirect(url_for("global_view"))
+
+            saved_url = _get_setting(conn, "supabase_url") or ""
+            saved_key = _get_setting(conn, "supabase_key") or ""
+        finally:
+            conn.close()
+
+        return render_template(
+            "settings.html",
+            saved_url=saved_url,
+            saved_key=saved_key,
+            env_configured=bool(supabase_url and supabase_key),
+        )
+
     @app.route("/global")
     def global_view():
-        if not supabase_url or not supabase_key:
+        eff_url, eff_key = _effective_supabase_config()
+        if not eff_url or not eff_key:
             return render_template("global.html", configured=False, error=None, runs=[], leaderboard=[])
 
-        headers = {"apikey": supabase_key, "Authorization": f"Bearer {supabase_key}"}
+        headers = {"apikey": eff_key, "Authorization": f"Bearer {eff_key}"}
         try:
             resp = requests.get(
-                f"{supabase_url}/rest/v1/runs",
+                f"{eff_url}/rest/v1/runs",
                 headers=headers,
                 params={
                     "select": "*,run_metrics(wins,gold,prestige,level,income,max_health,won)",

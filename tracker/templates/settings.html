@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Paramètres — Bazaar Tracker{% endblock %}
+{% block body %}
+  <h1>Paramètres Supabase</h1>
+  <div class="subtitle">Nécessaire pour l'onglet Global (voir tes runs et celles de tes amis)</div>
+
+  {% if env_configured %}
+  <div class="notice">
+    Déjà configuré via le fichier <span class="mono">.env</span> à côté de l'exe — ça prend
+    toujours le dessus sur ce qui est enregistré ici. Pour changer, modifie ce fichier directement
+    (ou supprime-le pour utiliser le formulaire ci-dessous à la place).
+  </div>
+  {% endif %}
+
+  <form method="post" class="settings-form">
+    <label>
+      Project URL
+      <input type="text" name="supabase_url" value="{{ saved_url }}" placeholder="https://xxxxxxxx.supabase.co" autocomplete="off">
+    </label>
+    <label>
+      Clé (anon pour un ami, service_role pour le propriétaire du projet)
+      <input type="password" name="supabase_key" value="{{ saved_key }}" placeholder="eyJhbGci..." autocomplete="off">
+    </label>
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <div class="notice" style="margin-top: 24px;">
+    Les deux valeurs se trouvent dans le projet Supabase, sous Settings &rarr; API. Enregistré
+    localement sur cette machine uniquement — ça reste dans ta base SQLite locale, jamais envoyé
+    ailleurs qu'à Supabase lui-même.
+  </div>
+{% endblock %}

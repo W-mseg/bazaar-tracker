@@ -104,3 +104,51 @@ tr:hover td { background: #20232d; }
   margin-bottom: 20px;
 }
 .notice.error { border-color: #4a2a2a; color: #ef8e8e; }
+
+.btn-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  background: #22406b;
+  color: #cfe1ff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+}
+.btn-link:hover { background: #2a4d80; text-decoration: none; }
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
+}
+.settings-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #b8bcc8;
+}
+.settings-form input {
+  background: #1c1f28;
+  border: 1px solid #2a2e3a;
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #e6e6ea;
+  font-size: 13px;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+.settings-form input:focus { outline: none; border-color: #7fb3ff; }
+.settings-form button {
+  align-self: flex-start;
+  background: #22406b;
+  color: #cfe1ff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+.settings-form button:hover { background: #2a4d80; }
