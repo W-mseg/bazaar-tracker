@@ -156,8 +156,12 @@ def crop_item_icon(
     if not (0 <= socket_index < roi["socket_count"]):
         return None
 
+    # If there's no occupied socket further right, there's nothing to bound
+    # the width against -- default to 1 rather than assuming a large item,
+    # since most items are small and an over-wide crop on a trailing item
+    # bleeds into empty board past it (or into unrelated interface chrome).
     higher = sorted(i for i in occupied_socket_indices if i > socket_index)
-    span = (higher[0] - socket_index) if higher else (roi["socket_count"] - socket_index)
+    span = (higher[0] - socket_index) if higher else 1
     span = max(1, min(span, 3))
 
     x1 = roi["row_left"] + socket_index * roi["cell_width"]

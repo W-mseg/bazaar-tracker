@@ -174,3 +174,29 @@ tr:hover td { background: #20232d; }
   cursor: pointer;
 }
 .settings-form button:hover { background: #2a4d80; }
+
+.flash-messages { margin-bottom: 20px; }
+.flash {
+  background: #1c1f28;
+  border: 1px solid #2a2e3a;
+  border-left: 3px solid #7fb3ff;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #b8bcc8;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.btn-delete {
+  background: #3a1c1c;
+  color: #ef8e8e;
+  border: 1px solid #4a2a2a;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  width: 100%;
+}
+.btn-delete:hover { background: #4a2424; }

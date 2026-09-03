@@ -12,6 +12,15 @@
     <a href="{{ url_for('items_view') }}">Items</a>
     <a href="{{ url_for('settings_view') }}">Paramètres</a>
   </nav>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  {% endwith %}
   {% block body %}{% endblock %}
 </body>
 </html>

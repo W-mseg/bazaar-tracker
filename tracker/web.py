@@ -1,11 +1,31 @@
 from __future__ import annotations
 
+import base64
+import json
 import os
 import sqlite3
 from datetime import datetime
 
 import requests
-from flask import Flask, abort, redirect, render_template, request, send_from_directory, url_for
+from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
+
+from .sync import ITEM_BUCKET
+
+
+def _jwt_role(token: str) -> str | None:
+    """
+    Reads the "role" claim out of a Supabase JWT without verifying its
+    signature -- only used to decide whether to show admin-only UI (delete
+    buttons). Not a security boundary: Supabase itself verifies the
+    signature server-side on every request, so a forged claim here would
+    just show a button whose actual DELETE call still gets rejected.
+    """
+    try:
+        payload = token.split(".")[1]
+        payload += "=" * (-len(payload) % 4)
+        return json.loads(base64.urlsafe_b64decode(payload)).get("role")
+    except Exception:
+        return None
 
 
 def _get_db(db_path: str) -> sqlite3.Connection:
@@ -86,6 +106,7 @@ def create_app(
     item_snapshot_dir: str | None = None,
 ) -> Flask:
     app = Flask(__name__)
+    app.secret_key = os.urandom(24)  # local-only, single-user -- just needs to exist for flash()
     app.jinja_env.filters["fmt_ts"] = _fmt_ts
     app.jinja_env.filters["fmt_duration"] = _fmt_duration
     app.jinja_env.filters["short_guid"] = _short_guid
@@ -324,6 +345,7 @@ def create_app(
             items=items,
             shared_configured=bool(eff_url and eff_key),
             shared_error=shared_error,
+            is_admin=bool(eff_key and _jwt_role(eff_key) == "service_role"),
         )
 
     @app.route("/item_snapshots/<path:filename>")
@@ -331,6 +353,53 @@ def create_app(
         if not item_snapshot_dir:
             abort(404)
         return send_from_directory(item_snapshot_dir, filename)
+
+    @app.route("/items/<template_id>/delete", methods=["POST"])
+    def delete_item(template_id: str):
+        """
+        Admin-only (needs the service_role key configured in Parametres,
+        which bypasses RLS): wipes one item out of the catalog -- table row,
+        storage file, and local copy -- so it's treated as never-captured
+        again and gets recaptured automatically the next time it's seen on
+        a board. This is how a bad crop gets fixed, without anyone needing
+        to touch SQL or the Supabase dashboard by hand.
+        """
+        eff_url, eff_key = _effective_supabase_config()
+        if not eff_url or not eff_key or _jwt_role(eff_key) != "service_role":
+            abort(403)
+
+        headers = {"apikey": eff_key, "Authorization": f"Bearer {eff_key}"}
+        remote_error = None
+        try:
+            requests.delete(
+                f"{eff_url}/storage/v1/object/{ITEM_BUCKET}/{template_id}.png",
+                headers=headers, timeout=15,
+            )
+            resp = requests.delete(
+                f"{eff_url}/rest/v1/item_catalog",
+                headers=headers, params={"template_id": f"eq.{template_id}"}, timeout=15,
+            )
+            resp.raise_for_status()
+        except requests.RequestException as e:
+            remote_error = str(e)
+
+        conn = _get_db(db_path)
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT screenshot_path FROM item_catalog WHERE template_id = ?", (template_id,))
+            row = cur.fetchone()
+            if row and row["screenshot_path"] and os.path.exists(row["screenshot_path"]):
+                os.remove(row["screenshot_path"])
+            conn.execute("DELETE FROM item_catalog WHERE template_id = ?", (template_id,))
+            conn.commit()
+        finally:
+            conn.close()
+
+        if remote_error:
+            flash(f"Supprimé localement, mais le nettoyage Supabase a échoué : {remote_error}")
+        else:
+            flash("Item supprimé -- il sera recapturé automatiquement au prochain combat où il apparaît.")
+        return redirect(url_for("items_view"))
 
     return app
 

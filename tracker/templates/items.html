@@ -33,6 +33,12 @@
           {% if it.mine %}<span class="badge synced">Toi</span>
           {% else %}<span class="badge unknown">{{ it.contributed_by or 'Communauté' }}</span>{% endif %}
         </div>
+        {% if is_admin %}
+        <form method="post" action="{{ url_for('delete_item', template_id=it.template_id) }}"
+              onsubmit="return confirm('Supprimer cette image ? Elle sera recapturée automatiquement au prochain combat où l\'item apparaît.');">
+          <button type="submit" class="btn-delete">Supprimer</button>
+        </form>
+        {% endif %}
       </div>
     </div>
     {% endfor %}
