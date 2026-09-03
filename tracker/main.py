@@ -72,6 +72,7 @@ def _handle_item_purchased(db: TrackerDb, run_builder: RunBuilder, ev: Event) ->
     socket_target = ev.socket_target
     run_id = run_builder._run_id
     day, hour = run_builder._day, run_builder._hour
+    contributed_by = run_builder._pending_username
 
     def _worker() -> None:
         from .screenshot import capture_item_snapshot
@@ -83,7 +84,8 @@ def _handle_item_purchased(db: TrackerDb, run_builder: RunBuilder, ev: Event) ->
         worker_db = TrackerDb(settings.db_path)
         try:
             worker_db.add_item_snapshot(
-                template_id, path, socket_target, run_id, day, hour, time.time()
+                template_id, path, socket_target, run_id, day, hour, time.time(),
+                contributed_by=contributed_by,
             )
         finally:
             worker_db.close()
@@ -93,7 +95,7 @@ def _handle_item_purchased(db: TrackerDb, run_builder: RunBuilder, ev: Event) ->
 
 
 def _sync_loop(db_path: str) -> None:
-    from .sync import sync_pending_runs
+    from .sync import sync_pending_items, sync_pending_runs
 
     # Own connection for the same reason as the OCR worker above -- this
     # runs on a background thread and the main thread's TrackerDb.conn
@@ -106,6 +108,10 @@ def _sync_loop(db_path: str) -> None:
             sync_pending_runs(db)
         except Exception as e:
             print(f"[Sync] loop error: {e!r}")
+        try:
+            sync_pending_items(db)
+        except Exception as e:
+            print(f"[Sync] item catalog loop error: {e!r}")
 
 
 def run_live() -> None:

@@ -3,21 +3,37 @@
 {% block body %}
   <h1>Catalogue d'items</h1>
   <div class="subtitle">
-    {{ snapshots|length }} item(s) unique(s) capturé(s) — première capture d'écran complète
-    à chaque item jamais vu placé dans l'inventaire (pas le stash). Pas encore recadré
-    précisément par item, ça viendra une fois qu'il y en a assez pour calibrer dessus.
+    {{ items|length }} item(s) unique(s) — capture automatique la première fois qu'un item
+    jamais vu atterrit dans l'inventaire (pas le stash). Pas encore recadré précisément par
+    item, ça viendra une fois qu'il y en a assez pour calibrer dessus.
   </div>
 
-  {% if snapshots %}
+  {% if not shared_configured %}
+  <div class="notice">
+    Catalogue partagé pas encore configuré — seules tes propres captures s'affichent.
+    <a href="{{ url_for('settings_view') }}" class="btn-link">Renseigner Supabase &rarr;</a>
+  </div>
+  {% elif shared_error %}
+  <div class="notice error">Impossible de contacter le catalogue partagé : {{ shared_error }}</div>
+  {% endif %}
+
+  {% if items %}
   <div class="item-grid">
-    {% for s in snapshots %}
+    {% for it in items %}
     <div class="item-card">
-      <a href="{{ url_for('item_snapshot_file', filename=s['screenshot_path']|basename) }}" target="_blank">
-        <img src="{{ url_for('item_snapshot_file', filename=s['screenshot_path']|basename) }}" alt="{{ s['template_id'] }}">
+      <a href="{{ it.image_src }}" target="_blank">
+        <img src="{{ it.image_src }}" alt="{{ it.template_id }}" loading="lazy">
       </a>
       <div class="item-card-body">
-        <div class="mono" title="{{ s['template_id'] }}">{{ s['template_id']|short_guid }}</div>
-        <div class="sub">{{ s['socket_target'] or '—' }} · {{ s['day']|day_hour(s['hour']) }}</div>
+        <div class="mono" title="{{ it.template_id }}">{{ it.template_id|short_guid }}</div>
+        <div class="sub">
+          {{ it.socket_target or '—' }}
+          {% if it.day %} · {{ it.day|day_hour(it.hour) }}{% endif %}
+        </div>
+        <div class="sub">
+          {% if it.mine %}<span class="badge synced">Toi</span>
+          {% else %}<span class="badge unknown">{{ it.contributed_by or 'Communauté' }}</span>{% endif %}
+        </div>
       </div>
     </div>
     {% endfor %}

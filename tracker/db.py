@@ -173,10 +173,16 @@ class TrackerDb:
                 run_id INTEGER,
                 day INTEGER,
                 hour INTEGER,
-                captured_at REAL NOT NULL
+                captured_at REAL NOT NULL,
+                contributed_by TEXT,
+                synced_at REAL,
+                remote_url TEXT
             )
             """
         )
+        self._add_column_if_missing("item_catalog", "contributed_by", "TEXT")
+        self._add_column_if_missing("item_catalog", "synced_at", "REAL")
+        self._add_column_if_missing("item_catalog", "remote_url", "TEXT")
 
         cur.execute(
             """
@@ -205,16 +211,17 @@ class TrackerDb:
         day: Optional[int],
         hour: Optional[int],
         ts: float,
+        contributed_by: Optional[str] = None,
     ) -> None:
         # INSERT OR IGNORE: if two instances of the same never-seen template
         # get purchased close together, only the first capture sticks.
         self.conn.execute(
             """
             INSERT OR IGNORE INTO item_catalog
-                (template_id, screenshot_path, socket_target, run_id, day, hour, captured_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+                (template_id, screenshot_path, socket_target, run_id, day, hour, captured_at, contributed_by)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (template_id, screenshot_path, socket_target, run_id, day, hour, ts),
+            (template_id, screenshot_path, socket_target, run_id, day, hour, ts, contributed_by),
         )
         self.conn.commit()
 
@@ -227,6 +234,18 @@ class TrackerDb:
         cur = self.conn.cursor()
         cur.execute("SELECT COUNT(*) FROM item_catalog")
         return int(cur.fetchone()[0])
+
+    def pending_sync_items(self) -> list[sqlite3.Row]:
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM item_catalog WHERE synced_at IS NULL")
+        return cur.fetchall()
+
+    def mark_item_synced(self, template_id: str, remote_url: str, ts: float) -> None:
+        self.conn.execute(
+            "UPDATE item_catalog SET synced_at = ?, remote_url = ? WHERE template_id = ?",
+            (ts, remote_url, template_id),
+        )
+        self.conn.commit()
 
     # -- settings --------------------------------------------------------------
 

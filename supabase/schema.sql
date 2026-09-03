@@ -126,3 +126,40 @@ begin
     execute format('create policy "public insert" on %I for insert with check (true)', t);
   end loop;
 end $$;
+
+-- Shared community item image catalog. One row per template_id, globally
+-- deduped (not per-run/per-player) -- whichever player first captures a
+-- given item "wins", everyone else's tracker just adopts that image
+-- instead of re-uploading. No update/delete for anon so a capture can't be
+-- overwritten or removed by anyone but the project owner.
+create table if not exists item_catalog (
+  template_id text primary key,
+  storage_path text not null,
+  image_url text not null,
+  socket_target text,
+  contributed_by text,
+  captured_at double precision not null,
+  created_at timestamptz not null default now()
+);
+
+alter table item_catalog enable row level security;
+drop policy if exists "public read" on item_catalog;
+create policy "public read" on item_catalog for select using (true);
+drop policy if exists "public insert" on item_catalog;
+create policy "public insert" on item_catalog for insert with check (true);
+
+-- Public storage bucket for the actual screenshot files (item icons aren't
+-- sensitive, so plain public URLs are fine -- no signed-URL machinery).
+insert into storage.buckets (id, name, public)
+values ('item-snapshots', 'item-snapshots', true)
+on conflict (id) do nothing;
+
+drop policy if exists "item snapshots public read" on storage.objects;
+create policy "item snapshots public read"
+  on storage.objects for select
+  using (bucket_id = 'item-snapshots');
+
+drop policy if exists "item snapshots public insert" on storage.objects;
+create policy "item snapshots public insert"
+  on storage.objects for insert
+  with check (bucket_id = 'item-snapshots');

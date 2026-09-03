@@ -272,10 +272,59 @@ def create_app(
         try:
             cur = conn.cursor()
             cur.execute("SELECT * FROM item_catalog ORDER BY captured_at DESC")
-            snapshots = cur.fetchall()
+            local_rows = [dict(r) for r in cur.fetchall()]
         finally:
             conn.close()
-        return render_template("items.html", snapshots=snapshots)
+
+        by_template: dict[str, dict] = {}
+        for r in local_rows:
+            by_template[r["template_id"]] = {
+                "template_id": r["template_id"],
+                "image_src": url_for("item_snapshot_file", filename=os.path.basename(r["screenshot_path"])),
+                "socket_target": r["socket_target"],
+                "day": r["day"],
+                "hour": r["hour"],
+                "contributed_by": r["contributed_by"],
+                "mine": True,
+            }
+
+        eff_url, eff_key = _effective_supabase_config()
+        shared_error = None
+        if eff_url and eff_key:
+            headers = {"apikey": eff_key, "Authorization": f"Bearer {eff_key}"}
+            try:
+                resp = requests.get(
+                    f"{eff_url}/rest/v1/item_catalog",
+                    headers=headers,
+                    params={"select": "*", "order": "captured_at.desc", "limit": "1000"},
+                    timeout=15,
+                )
+                resp.raise_for_status()
+                for r in resp.json():
+                    tid = r["template_id"]
+                    if tid in by_template:
+                        if not by_template[tid]["contributed_by"]:
+                            by_template[tid]["contributed_by"] = r.get("contributed_by")
+                    else:
+                        by_template[tid] = {
+                            "template_id": tid,
+                            "image_src": r["image_url"],
+                            "socket_target": r.get("socket_target"),
+                            "day": None,
+                            "hour": None,
+                            "contributed_by": r.get("contributed_by"),
+                            "mine": False,
+                        }
+            except requests.RequestException as e:
+                shared_error = str(e)
+
+        items = sorted(by_template.values(), key=lambda x: x["template_id"])
+        return render_template(
+            "items.html",
+            items=items,
+            shared_configured=bool(eff_url and eff_key),
+            shared_error=shared_error,
+        )
 
     @app.route("/item_snapshots/<path:filename>")
     def item_snapshot_file(filename: str):

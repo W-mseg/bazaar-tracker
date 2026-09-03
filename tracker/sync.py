@@ -147,6 +147,131 @@ def push_run(url: str, key: str, full: dict[str, Any]) -> bool:
     return True
 
 
+ITEM_BUCKET = "item-snapshots"
+
+
+def _post_insert_only(url: str, key: str, table: str, rows: list[dict[str, Any]]) -> tuple[bool, bool]:
+    """
+    Plain insert, no upsert -- unlike _post (which merges on conflict), this
+    is for the shared item catalog where the rule is "first capture wins":
+    a primary-key clash means someone else in the group already added this
+    item, not something to overwrite. Returns (success, was_conflict).
+    """
+    if not rows:
+        return True, False
+
+    endpoint = f"{url}/rest/v1/{table}"
+    headers = {
+        "apikey": key,
+        "Authorization": f"Bearer {key}",
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+    }
+    try:
+        resp = requests.post(endpoint, headers=headers, json=rows, timeout=15)
+        if resp.status_code == 409:
+            return False, True
+        if resp.status_code >= 300:
+            print(f"[Sync] {table} insert failed: {resp.status_code} {resp.text[:300]}")
+            return False, False
+        return True, False
+    except requests.RequestException as e:
+        print(f"[Sync] {table} insert errored: {e!r}")
+        return False, False
+
+
+def _upload_item_image(url: str, key: str, storage_path: str, file_path: str) -> bool:
+    endpoint = f"{url}/storage/v1/object/{ITEM_BUCKET}/{storage_path}"
+    headers = {
+        "apikey": key,
+        "Authorization": f"Bearer {key}",
+        "Content-Type": "image/png",
+        "x-upsert": "false",  # first capture wins -- never overwrite an existing image
+    }
+    try:
+        with open(file_path, "rb") as f:
+            data = f.read()
+        resp = requests.post(endpoint, headers=headers, data=data, timeout=30)
+        if resp.status_code >= 300:
+            print(f"[Sync] item image upload ({storage_path}) -> {resp.status_code} {resp.text[:200]}")
+            return False
+        return True
+    except (requests.RequestException, OSError) as e:
+        print(f"[Sync] item image upload errored: {e!r}")
+        return False
+
+
+def _item_public_url(url: str, storage_path: str) -> str:
+    return f"{url}/storage/v1/object/public/{ITEM_BUCKET}/{storage_path}"
+
+
+def _get_remote_item(url: str, key: str, template_id: str) -> dict[str, Any] | None:
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
+    try:
+        resp = requests.get(
+            f"{url}/rest/v1/item_catalog",
+            headers=headers,
+            params={"template_id": f"eq.{template_id}", "select": "template_id,image_url"},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        rows = resp.json()
+        return rows[0] if rows else None
+    except requests.RequestException as e:
+        print(f"[Sync] item_catalog lookup errored: {e!r}")
+        return None
+
+
+def sync_pending_items(db: TrackerDb) -> None:
+    """
+    Pushes locally-captured item screenshots into the shared community
+    catalog: check first whether someone else in the group already found
+    this template_id (skip uploading if so, just adopt their image), else
+    upload the image to Storage and add the row. First capture wins -- an
+    upload/insert conflict means someone beat us to it, not an overwrite.
+    """
+    config = _supabase_config(db)
+    if config is None:
+        return
+
+    url, key = config
+    now = time.time()
+
+    for row in db.pending_sync_items():
+        template_id = row["template_id"]
+
+        existing = _get_remote_item(url, key, template_id)
+        if existing is not None:
+            db.mark_item_synced(template_id, existing["image_url"], now)
+            print(f"[Sync] item {template_id} already in shared catalog, adopted")
+            continue
+
+        storage_path = f"{template_id}.png"
+        if not _upload_item_image(url, key, storage_path, row["screenshot_path"]):
+            existing = _get_remote_item(url, key, template_id)
+            if existing is not None:
+                db.mark_item_synced(template_id, existing["image_url"], now)
+            continue  # otherwise retry next pass
+
+        image_url = _item_public_url(url, storage_path)
+        payload = [{
+            "template_id": template_id,
+            "storage_path": storage_path,
+            "image_url": image_url,
+            "socket_target": row["socket_target"],
+            "contributed_by": row["contributed_by"],
+            "captured_at": row["captured_at"],
+        }]
+        ok, conflict = _post_insert_only(url, key, "item_catalog", payload)
+        if ok:
+            db.mark_item_synced(template_id, image_url, now)
+            print(f"[Sync] item {template_id} added to shared catalog")
+        elif conflict:
+            existing = _get_remote_item(url, key, template_id)
+            if existing is not None:
+                db.mark_item_synced(template_id, existing["image_url"], now)
+
+
 def sync_pending_runs(db: TrackerDb) -> None:
     config = _supabase_config(db)
     if config is None:
