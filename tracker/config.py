@@ -50,16 +50,16 @@ class Settings:
     screenshot_cooldown_seconds: float = 10.0
 
     # Building a local (and shared, see sync.py) item image catalog: on
-    # combat start -- the one moment the board is guaranteed on screen, not
-    # covered by a shop/vendor/reward popup -- capture one full frame and
+    # CombatPrepared (the game announcing a fight is ready to play, not
+    # CombatStarted which only marks the start of matchmaking/setup --
+    # see main.py's _handle_combat_prepared) capture one full frame and
     # crop out every never-seen-before template_id sitting in an actual
     # inventory socket (PlayerSocket_N -- not PlayerStorageSocket_N/stash),
-    # per the calibration in board_rois.py. 2s wasn't enough: a real capture
-    # at that delay caught the player's items still showing their face-down
-    # card back, mid reveal-animation -- 4.5s clears that reliably without
-    # eating into the fight itself (see 2026-09-03 session captures).
+    # per the calibration in board_rois.py. The delay just covers the
+    # intro-reveal animation between CombatPrepared and both boards
+    # actually being on screen, so it can stay short.
     enable_item_snapshots: bool = True
-    board_capture_delay_seconds: float = 4.5
+    board_capture_delay_seconds: float = 1.0
 
     tesseract_cmd: str | None = None
 

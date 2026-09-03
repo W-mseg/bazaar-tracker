@@ -64,13 +64,21 @@ def _socket_index(socket_target: Optional[str]) -> Optional[int]:
         return None
 
 
-def _handle_combat_started(db: TrackerDb, run_builder: RunBuilder) -> None:
+def _handle_combat_prepared(db: TrackerDb, run_builder: RunBuilder) -> None:
     """
     Building the item image catalog: a shop/vendor/reward screen can cover
-    the board at any other time, so combat start is the one moment it's
-    guaranteed to be on screen -- one screenshot here catches every item
-    bought since the last combat, each cropped out of that single frame
-    instead of archiving a full screen per item.
+    the board at any other time, so combat is the one moment it's
+    guaranteed on screen -- one screenshot here catches every item bought
+    since the last combat, each cropped out of that single frame instead of
+    archiving a full screen per item.
+
+    Triggered off CombatPrepared, not CombatStarted -- CombatStarted only
+    marks the *start* of matchmaking/setup, which the game's own sample log
+    shows takes a widely varying 3.6-12s (longer for PVP, which has to line
+    up against a real opponent). CombatPrepared ("Combat prepared:
+    frames=N") is the game announcing the fight is actually ready to play,
+    right before the intro animation reveals both boards -- an actual
+    signal from the game instead of a guessed delay from CombatStarted.
 
     Only called for PVE fights (see run_live()'s dispatch) -- board_rois.py
     was calibrated against a PVE frame, and a same-run PVP capture on
@@ -210,8 +218,10 @@ def run_live() -> None:
 
         if ev.type == "RunEnd":
             _handle_run_end(run_builder)
-        elif ev.type == "CombatStarted" and ev.combat_type == "pve":
-            _handle_combat_started(db, run_builder)
+        elif ev.type == "CombatPrepared":
+            pending = run_builder._pending_combat
+            if pending is not None and pending.get("combat_type") == "pve":
+                _handle_combat_prepared(db, run_builder)
 
 
 def run_replay(path: str, db_path: str) -> None:
