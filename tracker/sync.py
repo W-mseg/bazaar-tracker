@@ -15,12 +15,20 @@ from .db import TrackerDb
 METRICS_GRACE_SECONDS = 45.0
 
 
-def _supabase_config() -> tuple[str, str] | None:
-    url = os.environ.get("SUPABASE_URL")
+def _supabase_config(db: TrackerDb) -> tuple[str, str] | None:
+    # .env wins if present; otherwise whatever was saved from the dashboard's
+    # Parametres page (tracker/web.py writes the same two keys there), so
+    # syncing works the same way the Global tab's read side already does --
+    # no restart needed either way, this is re-read every sync pass.
+    url = os.environ.get("SUPABASE_URL") or db.get_setting("supabase_url")
     # SUPABASE_KEY for anyone using the restricted anon key (friends syncing
     # into a shared project); SUPABASE_SERVICE_KEY kept for the project
     # owner's original .env so it doesn't need to change.
-    key = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_SERVICE_KEY")
+    key = (
+        os.environ.get("SUPABASE_KEY")
+        or os.environ.get("SUPABASE_SERVICE_KEY")
+        or db.get_setting("supabase_key")
+    )
     if not url or not key:
         return None
     return url.rstrip("/"), key
@@ -126,7 +134,7 @@ def push_run(url: str, key: str, full: dict[str, Any]) -> bool:
 
 
 def sync_pending_runs(db: TrackerDb) -> None:
-    config = _supabase_config()
+    config = _supabase_config(db)
     if config is None:
         return  # not configured yet -- runs pile up locally until it is
 
