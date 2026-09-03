@@ -54,6 +54,44 @@ def _handle_run_end(run_builder: RunBuilder) -> None:
     threading.Thread(target=_worker, daemon=True).start()
 
 
+def _handle_item_purchased(db: TrackerDb, run_builder: RunBuilder, ev: Event) -> None:
+    """
+    Building a local item image catalog: the first time a never-seen
+    template_id lands in an actual inventory socket (not the stash), grab a
+    full screenshot as evidence. No per-item cropping yet -- that needs real
+    screenshots to calibrate against, this just archives them.
+    """
+    if not settings.enable_item_snapshots or not settings.enable_screenshots:
+        return
+    if not ev.socket_target or not ev.socket_target.startswith("PlayerSocket_"):
+        return
+    if not ev.template_id or db.has_item_snapshot(ev.template_id):
+        return
+
+    template_id = ev.template_id
+    socket_target = ev.socket_target
+    run_id = run_builder._run_id
+    day, hour = run_builder._day, run_builder._hour
+
+    def _worker() -> None:
+        from .screenshot import capture_item_snapshot
+
+        time.sleep(settings.item_snapshot_delay_seconds)
+        path = capture_item_snapshot(settings.item_snapshot_dir, template_id)
+        if not path:
+            return
+        worker_db = TrackerDb(settings.db_path)
+        try:
+            worker_db.add_item_snapshot(
+                template_id, path, socket_target, run_id, day, hour, time.time()
+            )
+        finally:
+            worker_db.close()
+        print(f"[ItemCatalog] captured {template_id} ({socket_target})")
+
+    threading.Thread(target=_worker, daemon=True).start()
+
+
 def _sync_loop(db_path: str) -> None:
     from .sync import sync_pending_runs
 
@@ -112,7 +150,7 @@ def run_live() -> None:
 
         threading.Thread(
             target=run_web,
-            args=(settings.db_path, settings.web_port, supabase_url, supabase_key),
+            args=(settings.db_path, settings.web_port, supabase_url, supabase_key, settings.item_snapshot_dir),
             daemon=True,
         ).start()
         threading.Timer(
@@ -133,6 +171,8 @@ def run_live() -> None:
 
         if ev.type == "RunEnd":
             _handle_run_end(run_builder)
+        elif ev.type == "ItemPurchased":
+            _handle_item_purchased(db, run_builder, ev)
 
 
 def run_replay(path: str, db_path: str) -> None:

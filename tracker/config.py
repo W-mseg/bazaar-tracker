@@ -40,6 +40,7 @@ class Settings:
     data_dir: Path
     db_path: str
     screenshot_dir: str
+    item_snapshot_dir: str
     log_path: str
 
     poll_interval_seconds: float = 0.5
@@ -47,6 +48,15 @@ class Settings:
     enable_screenshots: bool = True
     screenshot_delay_seconds: float = 3.0
     screenshot_cooldown_seconds: float = 10.0
+
+    # Building a local item image catalog: capture a full screenshot the
+    # first time a never-seen-before template_id lands in an actual
+    # inventory socket (PlayerSocket_N -- not PlayerStorageSocket_N/stash).
+    # No cropping yet, that needs real screenshots to calibrate against
+    # first -- this just archives the evidence, tagged with the item's
+    # template_id/socket/day/hour, so it can be reviewed and cropped later.
+    enable_item_snapshots: bool = True
+    item_snapshot_delay_seconds: float = 1.5
 
     tesseract_cmd: str | None = None
 
@@ -61,11 +71,13 @@ class Settings:
 def build_settings() -> Settings:
     data_dir = _ensure_dir(_default_data_dir())
     screenshot_dir = _ensure_dir(data_dir / "screenshots")
+    item_snapshot_dir = _ensure_dir(data_dir / "item_snapshots")
 
     return Settings(
         data_dir=data_dir,
         db_path=str(data_dir / "tracker.sqlite3"),
         screenshot_dir=str(screenshot_dir),
+        item_snapshot_dir=str(item_snapshot_dir),
         log_path=_default_log_path(),
     )
 

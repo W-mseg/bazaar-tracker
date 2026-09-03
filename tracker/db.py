@@ -160,6 +160,24 @@ class TrackerDb:
             """
         )
 
+        # One row per unique template_id ever seen in an inventory socket
+        # (not stash) -- a local, growing image catalog. screenshot_path is
+        # the FULL uncropped capture; precise per-item cropping is a later
+        # pass once there are enough real screenshots to calibrate against.
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS item_catalog (
+                template_id TEXT PRIMARY KEY,
+                screenshot_path TEXT NOT NULL,
+                socket_target TEXT,
+                run_id INTEGER,
+                day INTEGER,
+                hour INTEGER,
+                captured_at REAL NOT NULL
+            )
+            """
+        )
+
         cur.execute(
             """
             CREATE TABLE IF NOT EXISTS settings (
@@ -170,6 +188,45 @@ class TrackerDb:
         )
 
         self.conn.commit()
+
+    # -- item catalog --------------------------------------------------------------
+
+    def has_item_snapshot(self, template_id: str) -> bool:
+        cur = self.conn.cursor()
+        cur.execute("SELECT 1 FROM item_catalog WHERE template_id = ?", (template_id,))
+        return cur.fetchone() is not None
+
+    def add_item_snapshot(
+        self,
+        template_id: str,
+        screenshot_path: str,
+        socket_target: Optional[str],
+        run_id: Optional[int],
+        day: Optional[int],
+        hour: Optional[int],
+        ts: float,
+    ) -> None:
+        # INSERT OR IGNORE: if two instances of the same never-seen template
+        # get purchased close together, only the first capture sticks.
+        self.conn.execute(
+            """
+            INSERT OR IGNORE INTO item_catalog
+                (template_id, screenshot_path, socket_target, run_id, day, hour, captured_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (template_id, screenshot_path, socket_target, run_id, day, hour, ts),
+        )
+        self.conn.commit()
+
+    def list_item_snapshots(self) -> list[sqlite3.Row]:
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM item_catalog ORDER BY captured_at DESC")
+        return cur.fetchall()
+
+    def count_item_snapshots(self) -> int:
+        cur = self.conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM item_catalog")
+        return int(cur.fetchone()[0])
 
     # -- settings --------------------------------------------------------------
 

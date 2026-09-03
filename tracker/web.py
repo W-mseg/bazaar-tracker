@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+import os
 import sqlite3
 from datetime import datetime
 
 import requests
-from flask import Flask, abort, redirect, render_template, request, url_for
+from flask import Flask, abort, redirect, render_template, request, send_from_directory, url_for
 
 
 def _get_db(db_path: str) -> sqlite3.Connection:
@@ -78,13 +79,19 @@ def _result_badge(result: str | None, wins: int | None) -> tuple[str, str]:
     return "En cours", "unknown"
 
 
-def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str | None = None) -> Flask:
+def create_app(
+    db_path: str,
+    supabase_url: str | None = None,
+    supabase_key: str | None = None,
+    item_snapshot_dir: str | None = None,
+) -> Flask:
     app = Flask(__name__)
     app.jinja_env.filters["fmt_ts"] = _fmt_ts
     app.jinja_env.filters["fmt_duration"] = _fmt_duration
     app.jinja_env.filters["short_guid"] = _short_guid
     app.jinja_env.filters["result_badge"] = _result_badge
     app.jinja_env.filters["day_hour"] = _day_hour
+    app.jinja_env.filters["basename"] = lambda p: os.path.basename(p) if p else ""
 
     @app.route("/")
     def index():
@@ -259,9 +266,34 @@ def create_app(db_path: str, supabase_url: str | None = None, supabase_key: str 
 
         return render_template("global.html", configured=True, error=None, runs=runs, leaderboard=leaderboard)
 
+    @app.route("/items")
+    def items_view():
+        conn = _get_db(db_path)
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM item_catalog ORDER BY captured_at DESC")
+            snapshots = cur.fetchall()
+        finally:
+            conn.close()
+        return render_template("items.html", snapshots=snapshots)
+
+    @app.route("/item_snapshots/<path:filename>")
+    def item_snapshot_file(filename: str):
+        if not item_snapshot_dir:
+            abort(404)
+        return send_from_directory(item_snapshot_dir, filename)
+
     return app
 
 
-def run_web(db_path: str, port: int = 8765, supabase_url: str | None = None, supabase_key: str | None = None) -> None:
-    app = create_app(db_path, supabase_url=supabase_url, supabase_key=supabase_key)
+def run_web(
+    db_path: str,
+    port: int = 8765,
+    supabase_url: str | None = None,
+    supabase_key: str | None = None,
+    item_snapshot_dir: str | None = None,
+) -> None:
+    app = create_app(
+        db_path, supabase_url=supabase_url, supabase_key=supabase_key, item_snapshot_dir=item_snapshot_dir
+    )
     app.run(host="127.0.0.1", port=port, debug=False, use_reloader=False)

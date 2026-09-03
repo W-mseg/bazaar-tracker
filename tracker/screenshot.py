@@ -64,11 +64,12 @@ def _fallback_monitor_rect(sct, monitor_index: int) -> dict:
     return monitors[idx]
 
 
-def capture_final_board(out_dir: str, monitor_index: int = 1) -> Optional[str]:
+def _capture(out_dir: str, filename: str, monitor_index: int = 1) -> Optional[str]:
     """
     Captures the game's client area (falling back to a full monitor grab)
-    and saves it as a PNG. Returns the saved path, or None if screenshotting
-    isn't available (mss/PIL missing, or no display -- e.g. during replay tests).
+    and saves it as a PNG under the given filename. Returns the saved path,
+    or None if screenshotting isn't available (mss/PIL missing, or no
+    display -- e.g. during replay tests).
     """
     try:
         from mss import mss
@@ -85,7 +86,14 @@ def capture_final_board(out_dir: str, monitor_index: int = 1) -> Optional[str]:
         shot = sct.grab(region)
         img = Image.frombytes("RGB", shot.size, shot.rgb)
 
-        filename = f"run_end_{int(time.time())}.png"
         path = os.path.join(out_dir, filename)
         img.save(path)
         return path
+
+
+def capture_final_board(out_dir: str, monitor_index: int = 1) -> Optional[str]:
+    return _capture(out_dir, f"run_end_{int(time.time())}.png", monitor_index)
+
+
+def capture_item_snapshot(out_dir: str, template_id: str, monitor_index: int = 1) -> Optional[str]:
+    return _capture(out_dir, f"{template_id}_{int(time.time())}.png", monitor_index)
