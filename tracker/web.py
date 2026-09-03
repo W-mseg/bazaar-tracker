@@ -45,19 +45,25 @@ def _short_guid(value: str | None) -> str:
 
 
 # The game only logs a generic EndRunVictoryState / EndRunDefeatState --
-# never which milestone was reached. Victory actually has three tiers (4/7/10
-# wins banked before the run ends); a defeat is by definition under 4. The
-# tier is only knowable from the OCR'd wins count, so this is a display-time
-# label derived from (result, wins), not something stored as-is.
+# never which milestone was reached -- and the milestone banked doesn't
+# necessarily match victory/defeat anyway: a player can bank a 7-win reward
+# mid-run and still ultimately die, which the game logs as EndRunDefeatState
+# even though 7 wins were reached (confirmed against a real run: reward
+# screen showed "7 VICTOIRES / VICTOIRE ARGENT", the log's own state still
+# said defeat). So classification is purely wins-based, not tied to which
+# EndRun*State fired: >=4 wins is a win at that tier regardless of how the
+# run technically ended; under 4 is a defeat. Falls back to the raw log
+# state only when OCR hasn't produced a wins count yet.
 def _result_badge(result: str | None, wins: int | None) -> tuple[str, str]:
+    if wins is not None:
+        if wins >= 10:
+            return "Victoire 10", "victory"
+        if wins >= 7:
+            return "Victoire 7", "victory"
+        if wins >= 4:
+            return "Victoire 4", "victory"
+        return "Défaite", "defeat"
     if result == "victory":
-        if wins is not None:
-            if wins >= 10:
-                return "Victoire 10", "victory"
-            if wins >= 7:
-                return "Victoire 7", "victory"
-            if wins >= 4:
-                return "Victoire 4", "victory"
         return "Victoire", "victory"
     if result == "defeat":
         return "Défaite", "defeat"
